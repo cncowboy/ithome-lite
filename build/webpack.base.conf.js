@@ -28,7 +28,8 @@ module.exports = {
       '@': resolve('src'),
       vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
-      wx: resolve('src/utils/wx')
+      wx: resolve('src/utils/wx'),
+      xanui: 'mpvue-zanui'
     },
     symlinks: false
   },

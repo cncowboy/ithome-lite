@@ -15,7 +15,9 @@
     "mpvue": "^1.0.9",
     "mpvue-router-patch": "^0.1.5",
     "vuex": "^3.0.1",
-    "xmlstring2json": "^0.1.9"
+    "xmlstring2json": "^0.1.9",
+    "vant": "^1.1.1",
+    "mpvue-zanui": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",

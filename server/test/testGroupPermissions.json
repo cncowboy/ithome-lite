@@ -1,0 +1,12 @@
+{
+  "Todo": [
+    ["Neighborhood", "-----|lcrud|lcrud|-----", "NYC", "1"]
+  ],
+  "Neighborhood": [
+    ["Neighborhood", "-----|lcrud|-----|lcru-", "NYC", "1"]
+  ],
+  "User": [
+    ["Neighborhood", "-----|l--ud|-----|-----", "NYC", "1"],
+    ["Neighborhood", "-----|l-r--|-crud|-----"]
+  ]
+}

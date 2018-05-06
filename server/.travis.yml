@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "7"
+before-install:
+  - npm install -g gulp
+install:
+  - npm install
+script:
+  - gulp travis-test

@@ -38,7 +38,8 @@ module.exports = {
       vue: 'vue/dist/vue.js',
       flyio: 'flyio/dist/npm/fly',
       wx: resolve('src/utils/wx'),
-      xanui: 'vant'
+      xanui: 'vant',
+      xanuicss: resolve('src/styles/xanui.css')
     }
   },
   module: {

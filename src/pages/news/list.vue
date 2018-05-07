@@ -13,7 +13,7 @@
       .slider-item(@click="$router.push(slide.link)")
         .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
-  .van-button(type="default") hello
+  xan-button(type="default") hello
   .news-wrap
     news-item(
       v-for="item of news",
@@ -27,14 +27,14 @@ import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import { Swiper, Slide } from 'vue-swiper-component'
 import newsItem from '@/components/news-item'
-import { Button } from 'vant'
+import { Button as XanButton } from 'xanui'
 
 export default {
   components: {
     Swiper,
     SwiperItem: Slide,
     newsItem,
-    [Button.name]: Button
+    XanButton
   },
   computed: {
     ...mapState([

@@ -10,8 +10,9 @@
   ],
   "plugins": ["transform-runtime",
     ["import", {
-      "libraryName": "vant",
+      "libraryName": "xanui",
       "libraryDirectory": "es",
+      "customName": "(transformedMethodName) => { var result = this.libraryName; if (this.libraryDirectory) { result += '/'+ this.libraryDirectory; } if (transformedMethodName) { result += '/'+ transformedMethodName.replace('xan-', ''); } if (this.fileName) { result += '/'+ this.fileName; } return result; }",
       "style": true
     }]
   ],

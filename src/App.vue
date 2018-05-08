@@ -1,10 +1,12 @@
 <script>
+
 export default {
   mpType: 'app'
 }
 </script>
 
 <style>
+@import "styles/xanui.wxss";
 .container {
   width: 100%;
   min-height: 100vh;

@@ -1,4 +1,5 @@
 <script>
+import 'mp-weui/lib/style.css'
 
 export default {
   mpType: 'app'
@@ -7,13 +8,9 @@ export default {
 
 <style>
 @import "styles/xanui.wxss";
-.container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
+page {
+  background-color: #f8f8f8;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 </style>

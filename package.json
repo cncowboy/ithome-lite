@@ -1,8 +1,8 @@
 {
-  "name": "ithome-lite",
+  "name": "sport_corp",
   "version": "0.0.1",
-  "description": "IT之家小程序版客户端",
-  "author": "F-loat <chaimaoyuan@foxmail.com>",
+  "description": "企业运动服务",
+  "author": "zhangxiaobing <zhangxiaobing@51yund.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -12,12 +12,15 @@
   },
   "dependencies": {
     "flyio": "^0.5.7",
-    "mpvue": "^1.0.10",
+    "mpvue": "^1.0.11",
     "mpvue-router-patch": "^0.1.5",
     "vuex": "^3.0.1",
     "xmlstring2json": "^0.1.9",
     "vant": "^1.1.1",
-    "mpvue-zanui": "^1.0.2"
+    "mpvue-zanui": "^1.0.2",
+    "vux": "^2.9.0",
+    "mp-weui": "git+https://github.com/cncowboy/mp-weui.git",
+    "mpui": "^0.9.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",
@@ -53,7 +56,7 @@
     "less-loader": "^4.1.0",
     "mpvue-entry": "^0.3.6",
     "mpvue-loader": "^1.0.13",
-    "mpvue-template-compiler": "^1.0.10",
+    "mpvue-template-compiler": "^1.0.11",
     "mpvue-webpack-target": "^1.0.0",
     "opn": "^5.3.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

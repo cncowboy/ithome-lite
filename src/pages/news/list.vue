@@ -12,6 +12,14 @@
       .slider-item(@click="$router.push(slide.link)")
         .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
+  mp-progress(
+    :percent="50"
+    )
+  mp-slider(
+    show-value
+    :width="200"
+    :value="50")
+  button asdfasdf
   .news-wrap
     news-item(
       v-for="item of news",
@@ -24,10 +32,14 @@
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import newsItem from '@/components/news-item'
+import MpProgress from 'mp-weui/packages/progress'
+import MpSlider from 'mp-weui/packages/slider'
 
 export default {
   components: {
-    newsItem
+    newsItem,
+    MpProgress,
+    MpSlider
   },
   computed: {
     ...mapState([

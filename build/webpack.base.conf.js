@@ -29,7 +29,9 @@ module.exports = {
       vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
       wx: resolve('src/utils/wx'),
-      xanui: 'mpvue-zanui'
+      xanui: 'mpvue-zanui',
+      'weui-cell': 'mp-weui/packages/cell',
+      'weui-search': 'mp-weui/packages/search'
     },
     symlinks: false
   },

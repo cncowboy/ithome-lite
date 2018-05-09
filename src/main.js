@@ -16,15 +16,15 @@ export default {
   // 这个字段走 app.json
   config: {
     pages: [
-      'pages/news/list'
+      'pages/ranks'
     ], // Will be filled in webpack
     window: {
       backgroundTextStyle: 'light',
-      backgroundColor: '#d22222',
-      backgroundColorTop: '#d22222',
-      navigationBarBackgroundColor: '#d22222',
-      navigationBarTitleText: 'IT之家Lite',
-      navigationBarTextStyle: 'white'
+      backgroundColor: '#f8f8f8',
+      backgroundColorTop: '#f8f8f8',
+      navigationBarBackgroundColor: '#f8f8f8',
+      navigationBarTitleText: '企业运动服务',
+      navigationBarTextStyle: 'black'
     },
     tabBar: {
       color: '#999',
@@ -32,13 +32,23 @@ export default {
       backgroundColor: '#fff',
       borderStyle: 'black',
       list: [{
-        pagePath: 'pages/news/list',
-        text: '资讯',
+        pagePath: 'pages/ranks',
+        text: '排行榜',
         iconPath: 'static/assets/news.png',
         selectedIconPath: 'static/assets/news-active.png'
       }, {
-        pagePath: 'pages/quanzi/list',
-        text: '圈子',
+        pagePath: 'pages/activities',
+        text: '活动',
+        iconPath: 'static/assets/quanzi.png',
+        selectedIconPath: 'static/assets/quanzi-active.png'
+      }, {
+        pagePath: 'pages/orgs',
+        text: '通讯录',
+        iconPath: 'static/assets/news.png',
+        selectedIconPath: 'static/assets/news-active.png'
+      }, {
+        pagePath: 'pages/me',
+        text: '我',
         iconPath: 'static/assets/quanzi.png',
         selectedIconPath: 'static/assets/quanzi-active.png'
       }]

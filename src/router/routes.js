@@ -1,5 +1,33 @@
 module.exports = [
   {
+    path: '/pages/ranks',
+    name: 'ranksIndex',
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
+    path: '/pages/activities',
+    name: 'activitiesIndex',
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
+    path: '/pages/orgs',
+    name: 'orgsIndex',
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
+    path: '/pages/me',
+    name: 'meIndex',
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
     path: '/pages/news/list',
     name: 'NewsList',
     config: {

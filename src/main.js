@@ -1,7 +1,7 @@
 import Vue from 'vue'
 // import store from '@/store'
-import App from '@/components/mp/App'
-import appProps from '@/components/mp/appConfig'
+import App from 'platform-components/App'
+import appProps from 'platform-components/appConfig'
 
 Vue.config.productionTip = false
 

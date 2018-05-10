@@ -30,6 +30,7 @@ module.exports = {
       flyio: 'flyio/dist/npm/wx',
       wx: resolve('src/utils/wx'),
       xanui: 'mpvue-zanui',
+      'platform-components': resolve('src/components/mp'),
       'weui-cell': 'mp-weui/packages/cell',
       'weui-search': 'mp-weui/packages/search'
     },

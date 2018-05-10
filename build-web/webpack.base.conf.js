@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
-const config = require('../config')
+const config = require('../config-web')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -40,6 +40,7 @@ module.exports = {
       wx: resolve('src/utils/wx'),
       xanui: 'vant',
       xanuicss: resolve('src/styles/xanui.css'),
+      'platform-components': resolve('src/components/web'),
       'weui-cell': resolve('src/components/web/cell'),
       'weui-search': resolve('src/components/web/search')
     }

@@ -37,7 +37,7 @@ module.exports = {
       '@': resolve('src'),
       vue: 'vue/dist/vue.js',
       flyio: 'flyio/dist/npm/fly',
-      wx: resolve('src/utils/wx'),
+      wx: resolve('src/components/web/wx'),
       xanui: 'vant',
       xanuicss: resolve('src/styles/xanui.css'),
       'platform-components': resolve('src/components/web'),
@@ -51,12 +51,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: vueLoaderConfig,
+        exclude: [resolve('src/components/mp')]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
+        exclude: [resolve('src/components/mp')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

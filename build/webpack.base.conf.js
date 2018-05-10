@@ -28,7 +28,7 @@ module.exports = {
       '@': resolve('src'),
       vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
-      wx: resolve('src/utils/wx'),
+      wx: resolve('src/components/mp/wx'),
       xanui: 'mpvue-zanui',
       'platform-components': resolve('src/components/mp'),
       'weui-cell': 'mp-weui/packages/cell',
@@ -43,6 +43,7 @@ module.exports = {
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [resolve('src')],
+        exclude: [resolve('src/components/web')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -50,11 +51,13 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',
+        exclude: [resolve('src/components/web')],
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
         include: [resolve('src'), resolve('node_modules/mpvue-entry')],
+        exclude: [resolve('src/components/web')],
         use: [
           'babel-loader',
           {

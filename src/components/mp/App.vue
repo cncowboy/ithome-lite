@@ -7,7 +7,7 @@ export default {
 </script>
 
 <style>
-@import "../../styles/xanui.wxss";
+@import "./styles/xanui.wxss";
 page {
   background-color: #f8f8f8;
   font-size: 16px;

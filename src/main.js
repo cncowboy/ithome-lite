@@ -2,13 +2,15 @@ import Vue from 'vue'
 // import store from '@/store'
 import App from 'platform-components/App'
 import appProps from 'platform-components/appConfig'
+import { mergeObjects } from 'utils/utils'
 
 Vue.config.productionTip = false
 
-const app = new Vue({
-  appProps,
-  ...App
-})
+const app = new Vue(
+  mergeObjects(appProps, {
+    ...App
+  })
+)
 app.$mount()
 
 export default {

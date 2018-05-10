@@ -1,7 +1,11 @@
 module.exports = [
   {
+    alias: '/',
     path: '/pages/ranks',
     name: 'ranksIndex',
+    meta: {
+      nav: true
+    },
     config: {
       enablePullDownRefresh: false
     }
@@ -9,6 +13,9 @@ module.exports = [
   {
     path: '/pages/activities',
     name: 'activitiesIndex',
+    meta: {
+      nav: true
+    },
     config: {
       enablePullDownRefresh: false
     }
@@ -16,6 +23,9 @@ module.exports = [
   {
     path: '/pages/orgs',
     name: 'orgsIndex',
+    meta: {
+      nav: true
+    },
     config: {
       enablePullDownRefresh: false
     }
@@ -23,6 +33,9 @@ module.exports = [
   {
     path: '/pages/me',
     name: 'meIndex',
+    meta: {
+      nav: true
+    },
     config: {
       enablePullDownRefresh: false
     }
@@ -30,6 +43,9 @@ module.exports = [
   {
     path: '/pages/news/list',
     name: 'NewsList',
+    meta: {
+      nav: false
+    },
     config: {
       enablePullDownRefresh: true
     }
@@ -37,6 +53,9 @@ module.exports = [
   {
     path: '/pages/news/detail',
     name: 'NewsDetail',
+    meta: {
+      nav: false
+    },
     config: {
       navigationBarTitleText: '文章详情'
     }
@@ -44,6 +63,9 @@ module.exports = [
   {
     path: '/pages/news/comment',
     name: 'NewsComment',
+    meta: {
+      nav: false
+    },
     config: {
       navigationBarTitleText: '评论列表'
     }
@@ -51,6 +73,9 @@ module.exports = [
   {
     path: '/pages/quanzi/list',
     name: 'QuanziList',
+    meta: {
+      nav: false
+    },
     config: {
       navigationBarTitleText: '圈子',
       enablePullDownRefresh: true
@@ -59,6 +84,9 @@ module.exports = [
   {
     path: '/pages/quanzi/detail',
     name: 'QuanziDetail',
+    meta: {
+      nav: false
+    },
     config: {
       navigationBarTitleText: '圈子详情'
     }

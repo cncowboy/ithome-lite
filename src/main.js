@@ -17,7 +17,7 @@ export default {
   // 这个字段走 app.json
   config: {
     pages: [
-      'pages/ranks'
+      'pages/ranks/index'
     ], // Will be filled in webpack
     window: {
       backgroundTextStyle: 'light',
@@ -33,22 +33,22 @@ export default {
       backgroundColor: '#fff',
       borderStyle: 'black',
       list: [{
-        pagePath: 'pages/ranks',
+        pagePath: 'pages/ranks/index',
         text: '排行榜',
         iconPath: 'static/assets/news.png',
         selectedIconPath: 'static/assets/news-active.png'
       }, {
-        pagePath: 'pages/activities',
+        pagePath: 'pages/activities/index',
         text: '活动',
         iconPath: 'static/assets/quanzi.png',
         selectedIconPath: 'static/assets/quanzi-active.png'
       }, {
-        pagePath: 'pages/orgs',
+        pagePath: 'pages/orgs/index',
         text: '通讯录',
         iconPath: 'static/assets/news.png',
         selectedIconPath: 'static/assets/news-active.png'
       }, {
-        pagePath: 'pages/me',
+        pagePath: 'pages/me/index',
         text: '我',
         iconPath: 'static/assets/quanzi.png',
         selectedIconPath: 'static/assets/quanzi-active.png'

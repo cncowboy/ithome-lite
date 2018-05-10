@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config-web')
 const vueLoaderConfig = require('./vue-loader.conf')
+const vuxLoader = require('vux-loader')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -19,7 +20,7 @@ const createLintingRule = () => ({
   }
 })
 
-module.exports = {
+const webpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: ['babel-polyfill', './src/main.js']
@@ -42,7 +43,8 @@ module.exports = {
       xanuicss: resolve('src/styles/xanui.css'),
       'platform-components': resolve('src/components/web'),
       'weui-cell': resolve('src/components/web/cell'),
-      'weui-search': resolve('src/components/web/search')
+      'weui-search': resolve('src/components/web/search'),
+      'utils': resolve('src/utils')
     }
   },
   module: {
@@ -99,3 +101,26 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: [
+    'vux-ui',
+    'progress-bar',
+    {
+      name: 'duplicate-style',
+      options: {
+        cssProcessorOptions : {
+          safe: true,
+          zindex: false,
+          autoprefixer: {
+            add: true,
+            browsers: [
+              'iOS >= 7',
+              'Android >= 4.1'
+            ]
+          }
+        }
+      }
+    }
+  ]
+})

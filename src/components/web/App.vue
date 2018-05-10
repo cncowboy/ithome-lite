@@ -1,5 +1,24 @@
-<template lang="pug">
-#app
+<template>
+  <div id="app">
+    <tabbar>
+      <tabbar-item>
+        <img slot="icon" src="/static/assets/news-active.png">
+        <span slot="label">排行榜</span>
+      </tabbar-item>
+      <tabbar-item show-dot>
+        <img slot="icon" src="/static/assets/quanzi-active.png">
+        <span slot="label">活动</span>
+      </tabbar-item>
+      <tabbar-item selected link="/component/demo">
+        <img slot="icon" src="/static/assets/news-active.png">
+        <span slot="label">通讯录</span>
+      </tabbar-item>
+      <tabbar-item badge="2">
+        <img slot="icon" src="/static/assets/quanzi-active.png">
+        <span slot="label">我</span>
+      </tabbar-item>
+    </tabbar>
+  </div>
   .nav(v-if="$route.meta.nav")
     router-link.nav-item(to="/pages/news/list", replace)
       img.nav-icon(v-if="$route.name === 'NewsList'", src="/static/assets/news-active.png")
@@ -22,12 +41,15 @@
 
 <script>
 import PullTo from 'vue-pull-to'
+import { Tabbar, TabbarItem } from 'vux'
 
 export default {
   name: 'App',
   mpType: 'app',
   components: {
-    PullTo
+    PullTo,
+    Tabbar,
+    TabbarItem
   },
   data () {
     return {

@@ -1,37 +1,42 @@
 <template>
   <div >
-    <mp-search @change="onSearchChange" @confirm="onSearchConfirm" />
+    <mp-search @on-change="onSearchChange" @on-submit="onSearchConfirm" />
 
     <div class="weui-cells__title">操作</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
-        :icon-src="icon"
-        content="添加部门"
-        href="/aaa"
+        :icon="icon"
+        title="添加部门"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        :icon-src="icon"
-        content="邀请成员"
-        href="/aaa"
+        :icon="icon"
+        title="邀请成员"
+        link="/aaa"
+        is-link
       />
     </div>
 
     <div class="weui-cells__title">通讯录</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
-        :icon-src="icon"
-        content="张三"
-        href="/aaa"
+        :icon="icon"
+        title="张三"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        :icon-src="icon"
-        content="李四"
-        href="/aaa"
+        :icon="icon"
+        title="李四"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        :icon-src="icon"
-        content="王五"
-        href="/aaa"
+        :icon="icon"
+        title="王五"
+        link="/aaa"
+        is-link
       />
     </div>
 

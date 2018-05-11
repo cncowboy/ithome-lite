@@ -6,9 +6,6 @@
           v-model="activeIndex"
           :columns="columns"
         >
-          <!-- <mp-navbar-panel :active-index="activeIndex" :index="0">
-            选项一的内容
-          </mp-navbar-panel> -->
         </mp-navbar>
       </div>
     </div>
@@ -17,7 +14,6 @@
         <div
           v-for="(item, index) in columns"
           v-if="activeIndex === index"
-          class="weui-tab__content"
           :key="item"
         >
           <div class="weui-flex justify">
@@ -59,7 +55,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import MpNavbar from 'mp-weui/packages/navbar'
+  import MpNavbar from 'weui-navbar'
   import MpProgress from 'mp-weui/packages/progress'
   // import MpProgress from 'mpui/components/progress'
 
@@ -101,6 +97,13 @@
 <style lang="less" scoped>
 </style>
 <style lang="less">
+  .weui-flex {
+    display: flex;
+  }
+  .weui-flex__item{
+    flex: 1;
+  }
+
   .justify{
     display: flex;
     justify-content: center;

@@ -3,41 +3,46 @@
     <div class="weui-cells__title">当前运动数据</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
-        content="公里数"
-        label="123123"
-        href="/aaa"
+        title="公里数"
+        value="123123"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        content="步数"
-        label="123123"
-        href="/aaa"
+        title="步数"
+        value="123123"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        content="卡路里"
-        label="123123"
-        href="/aaa"
+        title="卡路里"
+        value="123123"
+        link="/aaa"
+        is-link
       />
     </div>
 
     <div class="weui-cells__title">我的活动</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
-        content="挑战100公里"
-        href="/aaa"
+        title="挑战100公里"
+        link="/aaa"
+        is-link
       />
       <mp-cell
-        content="挑战100公里"
-        href="/aaa"
+        title="挑战100公里"
+        link="/aaa"
+        is-link
       />
     </div>
-
     <div class="weui-cells__title">设置</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
-        content="运动数据源"
-        label="悦动圈"
-        href="/aaa"
-      />
+        title="运动数据源"
+        value="悦动圈"
+        link="/pages/ranks"
+        is-link="true"
+      ></mp-cell>
     </div>
 
   </div>

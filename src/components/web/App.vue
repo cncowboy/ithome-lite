@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view ref="current"></router-view>
+    <keep-alive>
+      <router-view ref="current"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -46,5 +48,10 @@ export default {
 </script>
 
 <style lang="less">
-
+  @import '~vux/src/styles/reset.less';
+  body {
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  }
 </style>

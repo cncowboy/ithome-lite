@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Toast from 'vue2-toast'
 import router from '@/router'
 import store from '@/store'
-import 'minireset.css'
 import 'vue2-toast/lib/toast.css'
 
 Vue.use(Toast)

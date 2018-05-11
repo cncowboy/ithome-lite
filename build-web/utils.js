@@ -66,7 +66,8 @@ exports.cssLoaders = function (options) {
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
+    styl: generateLoaders('stylus'),
+    wxss: generateLoaders('wxss'),
   }
 }
 
@@ -79,6 +80,7 @@ exports.styleLoaders = function (options) {
     const loader = loaders[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'),
+      // exclude: [resolve('src/components/mp')],
       use: loader
     })
   }

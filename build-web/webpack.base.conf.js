@@ -45,6 +45,7 @@ const webpackConfig = {
       'platform-components': resolve('src/components/web'),
       'weui-cell': resolve('src/components/web/cell'),
       'weui-search': resolve('src/components/web/search'),
+      'weui-navbar': resolve('src/components/web/navbar'),
       'utils': resolve('src/utils')
     }
   },

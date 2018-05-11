@@ -33,6 +33,7 @@ module.exports = {
       'platform-components': resolve('src/components/mp'),
       'weui-cell': 'mp-weui/packages/cell',
       'weui-search': 'mp-weui/packages/search',
+      'weui-navbar': 'mp-weui/packages/navbar',
       'utils': resolve('src/utils')
     },
     symlinks: false

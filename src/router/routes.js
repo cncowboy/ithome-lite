@@ -1,7 +1,7 @@
 module.exports = [
   {
     alias: '/',
-    path: '/pages/ranks/index',
+    path: '/pages/ranks',
     name: 'ranksIndex',
     meta: {
       nav: true
@@ -11,7 +11,7 @@ module.exports = [
     }
   },
   {
-    path: '/pages/activities/index',
+    path: '/pages/activities',
     name: 'activitiesIndex',
     meta: {
       nav: true
@@ -21,7 +21,7 @@ module.exports = [
     }
   },
   {
-    path: '/pages/orgs/index',
+    path: '/pages/orgs',
     name: 'orgsIndex',
     meta: {
       nav: true
@@ -31,7 +31,7 @@ module.exports = [
     }
   },
   {
-    path: '/pages/me/index',
+    path: '/pages/me',
     name: 'meIndex',
     meta: {
       nav: true

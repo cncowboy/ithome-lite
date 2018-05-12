@@ -1,20 +1,20 @@
 <template>
   <div >
-    <mp-search @on-change="onSearchChange" @on-submit="onSearchConfirm" />
+    <mp-search @on-input="onSearchChange" @on-submit="onSearchConfirm" />
 
     <div class="weui-cells__title">操作</div>
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
         :icon="icon"
-        title="添加部门"
+        label="添加部门"
         link="/aaa"
-        is-link
+        has-arraw
       />
       <mp-cell
         :icon="icon"
-        title="邀请成员"
+        label="邀请成员"
         link="/aaa"
-        is-link
+        has-arraw
       />
     </div>
 
@@ -22,21 +22,21 @@
     <div class="weui-cells weui-cells_after-title">
       <mp-cell
         :icon="icon"
-        title="张三"
+        label="张三"
         link="/aaa"
-        is-link
+        has-arraw
       />
       <mp-cell
         :icon="icon"
-        title="李四"
+        label="李四"
         link="/aaa"
-        is-link
+        has-arraw
       />
       <mp-cell
         :icon="icon"
-        title="王五"
+        label="王五"
         link="/aaa"
-        is-link
+        has-arraw
       />
     </div>
 

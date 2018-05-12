@@ -1,5 +1,5 @@
 <script>
-import 'mp-weui/lib/style.css'
+import 'mp-weui-platform/styles/weui.css'
 
 export default {
   mpType: 'app'

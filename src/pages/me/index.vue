@@ -1,47 +1,58 @@
 <template>
   <div >
+    <div class="weui-flex justify">
+      <div class="weui-flex__item justify align">
+
+      </div>
+    </div>
+    <div class="weui-flex justify">
+      <div class="weui-flex__item justify align">
+        cncowboy
+      </div>
+    </div>
+
     <div class="weui-cells__title">当前运动数据</div>
-    <div class="weui-cells weui-cells_after-title">
+    <div class="weui-cells weui-cells_after-label">
       <mp-cell
-        title="公里数"
-        value="123123"
+        label="公里数"
+        title="123123"
+        link="/aaa"
+        has-arraw
+      />
+      <mp-cell
+        label="步数"
+        title="123123"
         link="/aaa"
         is-link
       />
       <mp-cell
-        title="步数"
-        value="123123"
+        label="卡路里"
+        title="123123"
         link="/aaa"
-        is-link
-      />
-      <mp-cell
-        title="卡路里"
-        value="123123"
-        link="/aaa"
-        is-link
+        has-arraw
       />
     </div>
 
     <div class="weui-cells__title">我的活动</div>
-    <div class="weui-cells weui-cells_after-title">
+    <div class="weui-cells weui-cells_after-label">
       <mp-cell
-        title="挑战100公里"
+        label="挑战100公里"
         link="/aaa"
-        is-link
+        has-arraw
       />
       <mp-cell
-        title="挑战100公里"
+        label="挑战100公里"
         link="/aaa"
-        is-link
+        has-arraw
       />
     </div>
     <div class="weui-cells__title">设置</div>
-    <div class="weui-cells weui-cells_after-title">
+    <div class="weui-cells weui-cells_after-label">
       <mp-cell
-        title="运动数据源"
-        value="悦动圈"
+        label="运动数据源"
+        title="悦动圈"
         link="/pages/ranks"
-        is-link="true"
+        has-arraw
       ></mp-cell>
     </div>
 
@@ -81,4 +92,11 @@
 </script>
 
 <style lang="less" scoped>
+  .justify{
+    display: flex;
+    justify-content: center;
+  }
+  .align{
+    align-items: center;
+  }
 </style>

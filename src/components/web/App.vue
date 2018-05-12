@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import 'mp-weui-platform/styles/weui.css'
 // import PullTo from 'vue-pull-to'
 
 export default {

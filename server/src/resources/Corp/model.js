@@ -3,8 +3,10 @@ import modelFields from '../../resourcesBuilder/modelFields';
 export default {
   setup(database, sequelize, name, isGroup) {
     let fields = {
-      nick: sequelize.STRING,
-      join_type: sequelize.INTEGER, // 1: 暗号，2：邀请, 3：扫码
+      name: sequelize.STRING,
+      logo: sequelize.STRING, //公司标志
+      size: sequelize.INTEGER, //公司规模
+      industry: sequelize.INTEGER, //行业
     };
     fields = modelFields.addDefaultFields(fields, sequelize, isGroup);
     return database.define(name, fields);

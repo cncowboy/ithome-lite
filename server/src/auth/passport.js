@@ -4,6 +4,11 @@ import Auth0Strategy from 'passport-auth0';
 import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 import TwitterStrategy from 'passport-twitter';
+import WeappStrategy from 'passport-weixin';
+import WechatworkStrategy from 'passport-wechat-work';
+import DingdingStrategy from 'passport-dingding';
+import AlipayStrategy from 'passport-alipay-oauth2';
+import objectAssign from 'object-assign';
 import config from '../config';
 import utilities from '../utilities';
 
@@ -20,6 +25,10 @@ export default {
     facebook: FacebookStrategy,
     google: GoogleStrategy,
     twitter: TwitterStrategy,
+    // weapp: WeappStrategy,
+    wechatwork: WechatworkStrategy,
+    // dingding: DingdingStrategy,
+    // alipay: AlipayStrategy,
   },
   /** @function
    * @name getFromProfile
@@ -147,6 +156,8 @@ export default {
         passportConfig.consumerKey = config.authMethods[passportOptionName].id;
         passportConfig.consumerSecret = config.authMethods[passportOptionName].secret;
         passportConfig.userProfileURL = 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true';
+      } else if (passportOptionName=='wechatwork') {
+        objectAssign( passportConfig, config.authMethods['wechatwork'] );
       } else {
         passportConfig.clientID = config.authMethods[passportOptionName].id;
         passportConfig.clientSecret = config.authMethods[passportOptionName].secret;

@@ -56,6 +56,38 @@ const config = {
     local: {
 
     },
+    weapp: {
+      provider: 'weixin',
+      clientID: 'replace by ur weapp_appid',
+      clientSecret: 'replace by ur weapp_secret',
+      requireState: false,
+      authorizationURL: 'https://api.weixin.qq.com/sns/jscode2session',
+      session: false,
+      scope: 'weapp_login',
+      successRedirect: '/login/weapp/callback',
+      failureFlash: true,
+    },
+    'wechatwork': {
+      corpId: 'wwa1b64dba72a3bafa',
+      corpSecret: 'YyP31Pk3oQRa6wBYUhciEE-Zrmyu7Jah_7nDjStZlKaqlAL0tpcVGJqqtcurqfVv',
+      agentId: 'ww0907f675ca5f0454',
+      callbackURL: "login/wechatwork/callback",
+      state: "state",
+      scope: "snsapi_base",
+      getAccessToken: (callback) => {
+        callback();
+      },
+      saveAccessToken: (accessToken) => {},
+    },
+    'dingding': {
+      _clientId: '',
+      _clientSecret: '',
+    },
+    'alipay': {
+      app_id: '',
+      callbackURL: 'login/alipay/callback',
+      // 可以为空，passReqToCallback: '',
+    },
   },
   jwt: {
     secret: process.env.JWT_SECRET || '<JWT_SECRET>',

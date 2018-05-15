@@ -1,5 +1,15 @@
 module.exports = [
   {
+    path: '/pages/user/login',
+    name: 'userLogin',
+    meta: {
+      nav: false
+    },
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
     alias: '/',
     path: '/pages/ranks',
     name: 'ranksIndex',

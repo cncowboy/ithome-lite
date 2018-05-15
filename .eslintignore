@@ -2,4 +2,5 @@ build/*.js
 config/*.js
 /dist-web/
 /dist/
+/server/
 /*.js

@@ -3,29 +3,104 @@ import modelFields from '../../resourcesBuilder/modelFields';
 export default {
   setup(database, sequelize, name, isGroup) {
     let fields = {
-      title: sequelize.STRING,
-      logo: sequelize.STRING,
-      begin_at: sequelize.DATE,
-      end_at: sequelize.DATE,
-      sport_type: sequelize.INTEGER,
-      aim_type: sequelize.INTEGER,
-      aim_distance: sequelize.INTEGER,
-      reach_rate_limit: sequelize.INTEGER,
-      status: sequelize.INTEGER,
-      activity_type: sequelize.INTEGER,
-
-      `sport_type` int(4) NOT NULL DEFAULT '0' COMMENT '运动类型',
-      `aim_type` int(4) NOT NULL DEFAULT '0' COMMENT '目标类型',
-      `aim_distance` int(11) NOT NULL DEFAULT '0' COMMENT '目标距离',
-      `reach_rate_limit` int(11) NOT NULL DEFAULT '0' COMMENT '最低团队晋级达标率',
-      `status` int(4) NOT NULL DEFAULT '0' COMMENT '状态 -1:删除; 0:未生效 1:已发布 2:已开赛 3:已结束',
-      `activity_type` int(4) NOT NULL DEFAULT '0' COMMENT '活动类型 0:普通活动 1:节点活动',
-      `update_ts` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '更新时间',
-      `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-      `user_cnt` int(11) NOT NULL DEFAULT '0' COMMENT '活动参与人数',
-      `aim_reach_days` int(11) NOT NULL DEFAULT '0' COMMENT '目标达标天数',
-      `day_aim_reward_total_money` int(10) DEFAULT '0',
-      `aim_reward_total_money`
+      activity_type: {
+        type: sequelize.INTEGER(4),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      title: {
+        type: sequelize.STRING(255),
+        allowNull: false,
+        defaultValue: '',
+      },
+      logo: {
+        type: sequelize.STRING(255),
+        allowNull: false,
+        defaultValue: '',
+      },
+      begin_at: {
+        type: sequelize.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      end_at: {
+        type: sequelize.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      introduce: {
+        type: sequelize.TEXT,
+        allowNull: false,
+      },
+      reward_rule: {
+        type: sequelize.TEXT,
+        allowNull: false,
+      },
+      status: {
+        type: sequelize.INTEGER(4),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      sport_type: {
+        type: sequelize.INTEGER(4),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      aim_type: {
+        type: sequelize.INTEGER(4),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      aim_distance: {
+        type: sequelize.INTEGER(11),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      user_cnt: {
+        type: sequelize.INTEGER(11),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      aim_reach_days: {
+        type: sequelize.INTEGER(11),
+        allowNull: false,
+        defaultValue: '0'
+      },
+      reach_rate_limit: {
+        type: sequelize.INTEGER(11),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      day_aim_reward_total_money: {
+        type: sequelize.INTEGER(10),
+        allowNull: true,
+        defaultValue: '0',
+      },
+      aim_reward_total_money: {
+        type: sequelize.INTEGER(10),
+        allowNull: true,
+        defaultValue: '0',
+      },
+      allow_unreach: {
+        type: sequelize.INTEGER(2),
+        allowNull: false,
+        defaultValue: '0',
+      },
+      creater_id: {
+        type: sequelize.BIGINT,
+        allowNull: false,
+        defaultValue: '0',
+      },
+      createAt: {
+        type: sequelize.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      updatedAt: {
+        type: sequelize.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      }
     };
     fields = modelFields.addDefaultFields(fields, sequelize, isGroup);
     return database.define(name, fields);

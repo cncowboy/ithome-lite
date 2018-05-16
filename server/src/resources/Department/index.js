@@ -5,7 +5,7 @@ import milestones from './milestones';
 const endpoints = ['/departments', '/departments/:id'];
 const permissions = 'lcrud|-----|-----|-----';
 const isGroup = true;
-const autoAssociations = 'Department,Employee';
+const autoAssociations = 'Department';
 
 const exportArray = ['Department', permissions, model, endpoints, extension, autoAssociations, isGroup, milestones];
 

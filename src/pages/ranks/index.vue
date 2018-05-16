@@ -47,6 +47,11 @@
               23423
             </div>
           </div>
+          <div class="weui-flex justify">
+            <div class="weui-flex__item justify align order" >
+              <button class="weui-btn mini-btn" type="primary" size="mini" @click="onWexinworkLogin">企业微信登录</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -57,6 +62,7 @@
   import { mapState, mapActions } from 'vuex'
   import MpNavbar from 'weui-navbar'
   import MpProgress from 'mp-weui/packages/progress'
+  import qs from 'qs'
   // import MpProgress from 'mpui/components/progress'
 
   export default {
@@ -88,6 +94,12 @@
     //   this.loadmore()
     // },
     methods: {
+      onWexinworkLogin: () => {
+        let redirect_uri = 'http://work.51yund.com:8787/login/wexinwork'
+        let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
+          + qs.stringify(redirect_uri) + '&state=web_login@gyoss9&usertype=member'
+        window.location.href = url
+      },
       ...mapActions([
       ])
     }

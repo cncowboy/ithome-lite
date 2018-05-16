@@ -22,7 +22,8 @@
     "vant": "^1.1.1",
     "mpvue-zanui": "^1.0.2",
     "vux": "^2.9.1",
-    "mp-weui": "git+https://github.com/cncowboy/mp-weui.git"
+    "mp-weui": "git+https://github.com/cncowboy/mp-weui.git",
+    "qs": "^6.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",

@@ -83,6 +83,7 @@
     "fs": "^0.0.1-security",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
+    "vue-template-compiler": "^2.5.2",
     "vue-style-loader": "^4.1.0",
     "vux-loader": "^1.2.8",
     "webpack": "^3.11.0",

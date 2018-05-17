@@ -49,7 +49,7 @@
           </div>
           <div class="weui-flex justify">
             <div class="weui-flex__item justify align order" >
-              <a href="wexinworkLoginUrl" >企业微信登录</a>
+              <a :href="getWexinworkLoginUrl" >企业微信登录</a>
             </div>
           </div>
         </div>
@@ -83,10 +83,10 @@
       }
     },
     computed: {
-      wexinworkLoginUrl: () => {
-        let redirect_uri = 'http://work.51yund.com:8787/login/wexinwork'
+      getWexinworkLoginUrl: () => {
+        const redirectUri = 'http://work.51yund.com:8787/login/wexinwork'
         let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
-          + qs.stringify(redirect_uri) + '&state=web_login@gyoss9&usertype=member'
+          + encodeURIComponent(redirectUri) + '&state=web_login@gyoss9&usertype=member'
         return url
       },
       ...mapState([

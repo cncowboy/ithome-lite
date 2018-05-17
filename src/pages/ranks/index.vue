@@ -49,7 +49,7 @@
           </div>
           <div class="weui-flex justify">
             <div class="weui-flex__item justify align order" >
-              <button class="weui-btn mini-btn" type="primary" size="mini" @click="onWexinworkLogin">企业微信登录</button>
+              <a href="wexinworkLoginUrl" >企业微信登录</a>
             </div>
           </div>
         </div>
@@ -83,6 +83,12 @@
       }
     },
     computed: {
+      wexinworkLoginUrl: () => {
+        let redirect_uri = 'http://work.51yund.com:8787/login/wexinwork'
+        let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
+          + qs.stringify(redirect_uri) + '&state=web_login@gyoss9&usertype=member'
+        return url
+      },
       ...mapState([
       ])
     },
@@ -95,10 +101,6 @@
     // },
     methods: {
       onWexinworkLogin: () => {
-        let redirect_uri = 'http://work.51yund.com:8787/login/wexinwork'
-        let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
-          + qs.stringify(redirect_uri) + '&state=web_login@gyoss9&usertype=member'
-        window.location.href = url
       },
       ...mapActions([
       ])

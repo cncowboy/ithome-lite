@@ -62,7 +62,6 @@
   import { mapState, mapActions } from 'vuex'
   import MpNavbar from 'weui-navbar'
   import MpProgress from 'mp-weui/packages/progress'
-  import qs from 'qs'
   // import MpProgress from 'mpui/components/progress'
 
   export default {
@@ -84,7 +83,7 @@
     },
     computed: {
       getWexinworkLoginUrl: () => {
-        const redirectUri = 'http://work.51yund.com:8787/login/wexinwork'
+        const redirectUri = 'http://work.51yund.com:8080/login/wexinwork'
         let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
           + encodeURIComponent(redirectUri) + '&state=web_login@gyoss9&usertype=member'
         return url

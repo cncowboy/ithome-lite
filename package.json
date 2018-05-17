@@ -57,6 +57,7 @@
     "http-proxy-middleware": "^0.18.0",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
+    "node-notifier": "^5.1.2",
     "mpvue-entry": "^0.3.6",
     "mpvue-loader": "^1.0.13",
     "mpvue-template-compiler": "^1.0.11",

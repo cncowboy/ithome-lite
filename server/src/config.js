@@ -67,11 +67,11 @@ const config = {
       successRedirect: '/login/weapp/callback',
       failureFlash: true,
     },
-    'wechatwork': {
+    'wechat-work': {
       corpId: 'wwa1b64dba72a3bafa',
       corpSecret: 'YyP31Pk3oQRa6wBYUhciEE-Zrmyu7Jah_7nDjStZlKaqlAL0tpcVGJqqtcurqfVv',
       agentId: 'ww0907f675ca5f0454',
-      callbackURL: "login/wechatwork/callback",
+      callbackURL: "login/wechat-work/callback",
       state: "state",
       scope: "snsapi_base",
       getAccessToken: (callback) => {

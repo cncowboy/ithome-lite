@@ -26,7 +26,7 @@ export default {
     google: GoogleStrategy,
     twitter: TwitterStrategy,
     // weapp: WeappStrategy,
-    wechatwork: WechatworkStrategy,
+    'wechat-work': WechatworkStrategy,
     // dingding: DingdingStrategy,
     // alipay: AlipayStrategy,
   },
@@ -156,8 +156,8 @@ export default {
         passportConfig.consumerKey = config.authMethods[passportOptionName].id;
         passportConfig.consumerSecret = config.authMethods[passportOptionName].secret;
         passportConfig.userProfileURL = 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true';
-      } else if (passportOptionName=='wechatwork') {
-        objectAssign( passportConfig, config.authMethods['wechatwork'] );
+      } else if (passportOptionName=='wechat-work') {
+        objectAssign( passportConfig, config.authMethods['wechat-work'] );
       } else {
         passportConfig.clientID = config.authMethods[passportOptionName].id;
         passportConfig.clientSecret = config.authMethods[passportOptionName].secret;

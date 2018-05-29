@@ -16,6 +16,8 @@ import epilogueAuth from './auth/epilogueAuth';
 import spawnTest from '../test/setup/spawnTest';
 import server from './server';
 
+import platformCbEndpoints from './platform-callback/endpoints';
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -45,5 +47,6 @@ app.use(passport.initialize());
 epilogueAuth.setupAuthCheck(resources, groupXrefModel, database);
 
 authEndpoints.setup(app, passport);
+platformCbEndpoints.setup(app);
 // ---------------------server------------------------
 server.serve(database, server.createServerObject(app), resources, groupXrefModel);

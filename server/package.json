@@ -52,7 +52,7 @@
     "passport-twitter": "^1.0.4",
     "passport-local-sequelize": "^0.8.0",
     "passport-weixin": "^0.2.0",
-    "passport-wechat-work": "^0.2.0",
+    "passport-wechat-work": "git+https://github.com/cncowboy/passport-wechat-work.git",
     "passport-dingding": "^1.0.7",
     "passport-alipay-oauth2": "^0.2.2",
     "pg": "^7.4.1",
@@ -60,7 +60,9 @@
     "sequelize": "^4.35.1",
     "sequelize-embed": "^2.0.1",
     "winston": "^2.4.0",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "wechat-corp-service-callback": "git+https://github.com/cncowboy/wechat-corp-service-callback.git",
+    "wechat-corp-service": "git+https://github.com/cncowboy/wechat-corp-service.git"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

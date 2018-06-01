@@ -15,7 +15,7 @@
   "author": "Peter Keller <petekeller2@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app.js --exec babel-node",
+    "start": "nodemon --debug src/app.js --exec babel-node",
     "start-no-nodemon": "babel-node src/app.js",
     "build": "babel src -d build",
     "serve": "node build/app.js",

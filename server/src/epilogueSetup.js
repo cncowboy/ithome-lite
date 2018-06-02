@@ -1,5 +1,5 @@
 // @flow
-import epilogue from 'epilogue';
+import epilogue from '@xeersoft/epilogue';
 import merge from 'deepmerge';
 import utilities from './utilities';
 import Resources from './resources';

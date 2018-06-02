@@ -47,6 +47,6 @@ app.use(passport.initialize());
 epilogueAuth.setupAuthCheck(resources, groupXrefModel, database);
 
 authEndpoints.setup(app, passport);
-platformCbEndpoints.setup(app);
+platformCbEndpoints.setup(app, database);
 // ---------------------server------------------------
 server.serve(database, server.createServerObject(app), resources, groupXrefModel);

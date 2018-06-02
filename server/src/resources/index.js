@@ -1,3 +1,4 @@
+import WxQySuite from './WxQySuite';
 import UserJoin from './UserJoin';
 import ActivityUserDayDatum from './ActivityUserDayDatum';
 import ActivityUserDatum from './ActivityUserDatum';
@@ -12,7 +13,7 @@ import Todo from './Todo';
 import User from './User';
 import Neighborhood from './Neighborhood';
 
-export default [User, Todo, Neighborhood,
+export default [User, Todo, Neighborhood, WxQySuite,
   Corp, Company, Department, Employee,
   Activity, ActivityDepartmentDatum, ActivityDepartmentDayDatum,
   ActivityUserDatum, ActivityUserDayDatum, UserJoin];

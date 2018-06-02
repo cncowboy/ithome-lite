@@ -1,7 +1,9 @@
 import wechatCsc from 'wechat-corp-service-callback';
+var WXBizMsgCrypt = require('wechat-crypto');
 import config from '../config';
 
 let gSequelize = null;
+let gCryptor = null;
 
 const save_ticket = (sequelize, data, callback) => {
   sequelize.query('INSERT INTO wx_qy_suites (suite_id, aes_key, token, ticket, expiredAt) ' +
@@ -15,12 +17,15 @@ const save_ticket = (sequelize, data, callback) => {
 };
 
 const app_suite = (req, res, next) => {
+  const that = this;
   const sc = config.authMethods['wechat-work'];
   const _config = {
     token: sc.token,
     encodingAESKey: sc.aes_key,
     suiteid: sc.suite_id,
   };
+  gCryptor = new WXBizMsgCrypt(sc.token, sc.aes_key, sc.suite_id);
+
   var _route = function(message, req, res, next) {
 
     if (message.InfoType === 'suite_ticket') { // 微信服务器发过来的票，每10分钟发一次
@@ -45,6 +50,24 @@ const app_suite = (req, res, next) => {
   if (req.method === 'POST') {
     wechatCsc(_config, _route)(req, res, next);
   } else if (req.method === 'GET') {
+    const signature = req.query.msg_signature;
+    const timestamp = req.query.timestamp;
+    const nonce = req.query.nonce;
+    const cryptor = req.cryptor || gCryptor;
+
+    if (req.query.echostr) {
+      const echostr = req.query.echostr;
+      if (signature !== cryptor.getSignature(timestamp, nonce, echostr)) {
+        res.writeHead(401);
+        res.end('Invalid signature');
+        return;
+      }
+      var result = cryptor.decrypt(echostr);
+      // TODO 检查corpId的正确性
+      res.writeHead(200);
+      res.end(result.message);
+      return;
+    }
     res.send('这个接口不适合GET');
   };
 };

@@ -71,7 +71,7 @@ const config = {
       corpId: 'wwa1b64dba72a3bafa',
       corpSecret: 'YyP31Pk3oQRa6wBYUhciEE-Zrmyu7Jah_7nDjStZlKaqlAL0tpcVGJqqtcurqfVv',
       agentId: 'ww0907f675ca5f0454',
-      suite_id: 'ww0907f675ca5f0454',
+      suite_id: 'wwd8cc11cf93bdf5dd',
       token:    'EkBLuJiYOTeK2FKkBVwkCvVtP', // 用于生成签名
       aes_key:  'U5hNpVHHL85geJvEByV6uKLe2qnmWwiiQcIA3ESxyEz', // AES密钥
       callbackURL: "login/wechat-work/callback",

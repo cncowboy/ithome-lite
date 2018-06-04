@@ -1,9 +1,6 @@
 <template id="login-form">
   <div class="login-wrapper">
-    <div class="login-left">
-      <img height="100" src="https://wisk.s3.amazonaws.com/assets/vms/images/wisk-logo-black.png" srcr="https://preview.ibb.co/hUAr57/bar_bg.jpg">
-    </div>
-    <form class="login-right" @submit.prevent>
+    <form class="login-form" @submit.prevent>
       <div class="h2">Login</div>
       <div class="form-group">
         <input type="text" id="username" placeholder="Username" v-model="username">
@@ -173,7 +170,6 @@
     padding-bottom: 15px;
   }
   .login-wrapper {
-    width: 800px;
     height: 440px;
     background-color: #fff;
     box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2);
@@ -181,39 +177,17 @@
     overflow: hidden;
     position: relative;
   }
-  .login-left {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
-    overflow: hidden;
-  }
-  .login-left img {
-    display: block;
-    transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
-    object-position: left;
-  }
-  .open .login-left img {
-    -webkit-transform: translateX(210px) translateZ(0);
-    transform: translateX(210px) translateZ(0);
-  }
-  .open .login-left {
-    -webkit-transform: translateX(-400px) translateZ(0);
-    transform: translateX(-400px) translateZ(0);
-  }
-  .login-right {
-    padding: 40px;
+  .login-form {
+    padding: 20px;
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     width: 400px;
     -webkit-transform: translateX(400px) translateZ(0);
     transform: translateX(400px) translateZ(0);
     transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
   }
-  .open .login-right {
+  .open .login-form {
     -webkit-transform: translateX(0px) translateZ(0);
     transform: translateX(0px) translateZ(0);
   }

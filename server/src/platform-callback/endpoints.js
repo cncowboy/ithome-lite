@@ -21,10 +21,10 @@ const app_suite = (req, res, next) => {
   const sc = config.authMethods['wechat-work'];
   const _config = {
     token: sc.token,
-    encodingAESKey: sc.aes_key,
-    suiteid: sc.suite_id,
+    encodingAESKey: sc.aesKey,
+    suiteid: sc.suiteId,
   };
-  gCryptor = new WXBizMsgCrypt(sc.token, sc.aes_key, sc.suite_id);
+  gCryptor = new WXBizMsgCrypt(sc.token, sc.aesKey, sc.suiteId);
 
   var _route = function(message, req, res, next) {
 
@@ -33,7 +33,7 @@ const app_suite = (req, res, next) => {
       const suite_ticket = message.SuiteTicket;
       // const suite_ticket_tm = new Date(parseInt(message.TimeStamp) * 1000);
       // 将最新的ticket放到数据库中, 调用用户自己定义的 save_ticket(callback) 方法。
-      save_ticket(gSequelize, {suiteId: sc.suite_id, token: sc.token, aesKey: sc.aes_key, ticket: suite_ticket, expired: 10}, (err, ret) => {
+      save_ticket(gSequelize, {suiteId: sc.suiteId, token: sc.token, aesKey: sc.aesKey, ticket: suite_ticket, expired: 10}, (err, ret) => {
         res.reply('success');
       });
     } else if (message.InfoType === 'change_auth') { // 变更授权的通知

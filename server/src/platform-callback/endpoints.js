@@ -127,7 +127,7 @@ const app_suite = (req, res, next) => {
     } else if (message.InfoType === 'create_auth') {
 
       // $work->setSuiteTempAuthCode(message.SuiteId, message.AuthCode);
-      gApiWxqy.getPermanentCode(message.AuthCode, ( data ) => {
+      gApiWxqy.getPermanentCode(message.AuthCode, ( err, data ) => {
         const permanent_code = data.permanent_code;
         let params = {suiteId: sc.suiteId, permanent_code: permanent_code, userid: data.auth_user_info.userid,
           user_name: data.auth_user_info.name, user_avatar: data.auth_user_info.avatar};

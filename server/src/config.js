@@ -70,7 +70,7 @@ const config = {
     },
     'wechat-work': {
       corpId: 'wwa1b64dba72a3bafa',
-      corpSecret: 'YyP31Pk3oQRa6wBYUhciEE-Zrmyu7Jah_7nDjStZlKaqlAL0tpcVGJqqtcurqfVv',
+      suiteSecret: 'YyP31Pk3oQRa6wBYUhciEE-Zrmyu7Jah_7nDjStZlKaqlAL0tpcVGJqqtcurqfVv',
       agentId: 'ww0907f675ca5f0454',
       suiteId: 'wwd8cc11cf93bdf5dd',
       token:    'EkBLuJiYOTeK2FKkBVwkCvVtP', // 用于生成签名

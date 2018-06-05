@@ -4,19 +4,21 @@ export default {
   setup(database, sequelize, name, isGroup) {
     let fields = {
       suite_id: sequelize.STRING,
-      corpid: sequelize.STRING,
+      corpid: { type: sequelize.STRING, unique: true },
       corp_name: sequelize.STRING,
       corp_type: sequelize.STRING,
       corp_square_logo_url: sequelize.STRING,
       corp_user_max: sequelize.INTEGER,
       corp_agent_max: sequelize.INTEGER,
       corp_full_name: sequelize.STRING,
+      corp_scale: sequelize.STRING,
       corp_industry: sequelize.STRING,
       corp_sub_industry: sequelize.STRING,
       admin_userid: sequelize.STRING,
       admin_name: sequelize.STRING,
       admin_avatar: sequelize.STRING,
       permanent_code: sequelize.STRING,
+      bind_corpid: sequelize.STRING,
       createdAt: {
         type: sequelize.DATE,
         allowNull: false,

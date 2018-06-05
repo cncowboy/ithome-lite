@@ -1,3 +1,4 @@
+import { getWxqyAccessToken } from './platform-callback/api_wxqy';
 const config = {
   // if process.env is not being set, you may need to set 'Defaults env_keep +=' in the /etc/sudoers
   environment: process.env.NODE_ENV || 'development', // development, testing, staging or production
@@ -74,12 +75,10 @@ const config = {
       suiteId: 'wwd8cc11cf93bdf5dd',
       token:    'EkBLuJiYOTeK2FKkBVwkCvVtP', // 用于生成签名
       aesKey:  'U5hNpVHHL85geJvEByV6uKLe2qnmWwiiQcIA3ESxyEz', // AES密钥
-      callbackURL: "login/wechat-work/callback",
+      callbackURL: "/login/wechat-work/callback",
       state: "state",
       scope: "snsapi_base",
-      getAccessToken: (callback) => {
-        callback();
-      },
+      getAccessToken: getWxqyAccessToken,
       saveAccessToken: (accessToken) => {},
     },
     'dingding': {

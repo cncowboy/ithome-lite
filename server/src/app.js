@@ -17,6 +17,7 @@ import spawnTest from '../test/setup/spawnTest';
 import server from './server';
 
 import platformCbEndpoints from './platform-callback/endpoints';
+import { getApiWxqy } from './platform-callback/api_wxqy';
 
 const app = express();
 
@@ -47,6 +48,8 @@ app.use(passport.initialize());
 epilogueAuth.setupAuthCheck(resources, groupXrefModel, database);
 
 authEndpoints.setup(app, passport);
-platformCbEndpoints.setup(app, database);
+
+const apiWxqy = getApiWxqy(config, database);
+platformCbEndpoints.setup(app, database, apiWxqy);
 // ---------------------server------------------------
 server.serve(database, server.createServerObject(app), resources, groupXrefModel);

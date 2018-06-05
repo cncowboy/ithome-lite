@@ -1,0 +1,37 @@
+import APICorp from 'wechat-corp-service';
+
+let gSequelize = null;
+let gApiCorp = null;
+
+const get_token = (cb) => {
+  cb(null, '');
+};
+
+const save_token = (token, cb) => {
+
+};
+
+export const getApiWxqy = (config: {}, sequelize: {}) => {
+  gSequelize = sequelize;
+  const sc = config.authMethods['wechat-work'];
+  const apicorp = new APICorp(sc.suiteId, sc.suiteSecert, '', get_token, save_token);
+  sequelize.query('SELECT * FROM wx_qy_suites WHERE suite_id=$suiteid', { bind: {suiteid: sc.suiteId}, type: sequelize.QueryTypes.SELECT })
+    .then(function(wx_suites) {
+      if (wx_suites && wx_suites.length>0) {
+        const suite = wx_suites[0];
+        apicorp.setSuiteTicket(suite.ticket);
+        apicorp.getSuiteToken((err, token) => {
+
+        });
+      }
+    });
+  gApiCorp = apicorp;
+  return apicorp;
+};
+
+export const getWxqyAccessToken = (callback) => {
+  gApiCorp.getSuiteToken((err, token) => {
+    callback(err, token);
+  });
+};
+

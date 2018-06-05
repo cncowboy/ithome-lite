@@ -14,7 +14,7 @@ import Todo from './Todo';
 import User from './User';
 import Neighborhood from './Neighborhood';
 
-export default [User, Todo, Neighborhood, WxQySuit, WxQyCorpe,
+export default [User, Todo, Neighborhood, WxQySuite, WxQyCorp,
   Corp, Company, Department, Employee,
   Activity, ActivityDepartmentDatum, ActivityDepartmentDayDatum,
   ActivityUserDatum, ActivityUserDayDatum, UserJoin];

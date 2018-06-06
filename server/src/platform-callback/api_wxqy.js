@@ -15,7 +15,7 @@ export const getApiWxqy = (config: {}, sequelize: {}) => {
   gSequelize = sequelize;
   const sc = config.authMethods['wechat-work'];
   const apicorp = new APICorp(sc.suiteId, sc.suiteSecret, '');
-  sequelize.query('SELECT * FROM wx_qy_suites WHERE suite_id=$suiteid', { bind: {suiteid: sc.suiteId}, type: sequelize.QueryTypes.SELECT })
+  sequelize.query('SELECT * FROM wx_qy_suite WHERE suite_id=$suiteid', { bind: {suiteid: sc.suiteId}, type: sequelize.QueryTypes.SELECT })
     .then(function(wx_suites) {
       if (wx_suites && wx_suites.length>0) {
         const suite = wx_suites[0];

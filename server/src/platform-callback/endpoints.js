@@ -69,7 +69,7 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     });
     userId = user.userid;
 
-    const resourceEmployee = awaitedResourcesFromSetup.get('Emplyee');
+    const resourceEmployee = awaitedResourcesFromSetup.get('Employee');
     const modelEmployee = resourceEmployee[2];
     await modelEmployee.create({
       userid: userId, nick: data.user_name, join_type: 3

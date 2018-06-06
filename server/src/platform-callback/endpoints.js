@@ -9,24 +9,25 @@ let gApiWxqy = null;
 let gResources = null;
 
 const save_ticketQ = async (sequelize, resourcesFromSetup, data) => {
+  /*
   const awaitedResourcesFromSetup = await resourcesFromSetup;
   const resourceWxQySuite = awaitedResourcesFromSetup.get('wx_qy_suite');
   const modelSuite = resourceWxQySuite[2];
-
+  */
   const results = await sequelize.query('INSERT INTO wx_qy_suites (suite_id, aes_key, token, ticket, expiredAt) ' +
     'VALUES($suiteId, $aesKey, $token, $ticket, DATE_ADD(now(), interval $expired MINUTE)) ' +
     'ON DUPLICATE KEY UPDATE ticket=$ticket, expiredAt=DATE_ADD(now(), interval $expired MINUTE)',
     {
       bind: { suiteId: data.suiteId, aesKey: data.aesKey, token: data.token, ticket: data.ticket, expired: data.expired },
-      type: sequelize.QueryTypes.INSERT, raw: true, model: modelSuite
+      type: sequelize.QueryTypes.INSERT, raw: false
     }
   );
   console.log(results);
   return results;
 };
 
-const import_corp = (sequelize, data, callback) => {
-  sequelize.query('INSERT INTO wx_qy_corps (suite_id, corpid, corp_name, corp_type, corp_square_logo_url, \n' +
+const import_corp = async (sequelize, data) => {
+  const wxQyCorpsInsertResult = await sequelize.query('INSERT INTO wx_qy_corps (suite_id, corpid, corp_name, corp_type, corp_square_logo_url, \n' +
     'corp_user_max, corp_agent_max, corp_full_name, corp_scale, corp_industry, \n' +
     'corp_sub_industry, admin_userid, admin_name, admin_avatar, permanent_code, \n' +
     'createdAt, updatedAt) \n' +
@@ -41,72 +42,56 @@ const import_corp = (sequelize, data, callback) => {
         fullName: data.corp_full_name, corpScale: data.corp_scale, industry: data.corp_industry, subIndustry: data.corp_sub_industry,
         userId: data.userid, userName: data.user_name, userAvatar: data.user_avatar, permanentCode: data.permanent_code
       },
-      type: sequelize.QueryTypes.INSERT
+      type: sequelize.QueryTypes.INSERT, raw: true
     }
-  ).spread((results, metadata) => {
-    // Results will be an empty array and metadata will contain the number of affected rows.
-    callback(null, 0);
-    /*
-    sequelize.query('SELECT * FROM wx_qy_corps WHERE corpid=$corpid', { type: sequelize.QueryTypes.SELECT })
-      .then(function(wx_corps) {
-        const wx_corp = wx_corps[0];
-        if (!wx_corp.bind_corpid) {
-          sequelize.query('INSERT INTO corps (name, logo, scale, industry, createdAt, updatedAt) \n' +
-            'VALUES($corpName, $logoUrl, $corpScale, $industry, now(), now()) \n' +
-            'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
-            { bind: {
-                corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
-                corpScale: data.corp_scale, industry: data.corp_industry
-              },
-              type: sequelize.QueryTypes.INSERT
-            }
-          ).spread((results, metadata) => {
-            const bindCorpId = '';
+  );
+  const wxQyCorps = await sequelize.query('SELECT * FROM wx_qy_corps WHERE corpid=$corpid', { bind: {corpid: data.corpid}, type: sequelize.QueryTypes.SELECT, raw: true });
+  const wxQyCorp = wxQyCorps[0];
+  if (!wxQyCorp.bind_corpid) {
+    let bindCorpId = 0;
+    let userId = 0;
+    let companyId = 0;
 
-            sequelize.query('INSERT IGNORE INTO users (id, username, emailAddress, profilePicture, createdAt, updatedAt) \n' +
-              'VALUES($userid, $userName, '', $userAvatar, now(), now()) \n' +
-              'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
-              {
-                bind: {
-                  userId: data.userid, userName: data.user_name, userAvatar: data.user_avatar
-                },
-                type: sequelize.QueryTypes.INSERT
-              }
-            ).spread((results, metadata) => {
-
-            });
-
-            id: { type: sequelize.STRING, unique: true },
-            username: sequelize.STRING,
-              emailAddress: sequelize.STRING,
-              profilePicture: sequelize.STRING,
-
-            sequelize.query('INSERT INTO companies (name, logo, scale, industry, createdAt, updatedAt) \n' +
-              'VALUES($corpName, $logoUrl, $corpScale, $industry, now(), now()) \n' +
-              'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
-              {
-                bind: {
-                  corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
-                  corpScale: data.corp_scale, industry: data.corp_industry
-                },
-                type: sequelize.QueryTypes.INSERT
-              }
-            ).spread((results, metadata) => {
-
-            });
-            sequelize.query('UPDATE wx_qy_corps SET bind_corpid=$bindCorpId WHERE corpid=$corpid, updatedAt=now()',
-              {
-                bind: { corpid: data.corpid, bindCorpId: bindCorpId},
-                type: sequelize.QueryTypes.INSERT
-              }
-            ).spread((results, metadata) => {
-
-            });
-          });
-        }
-      });
-      */
-  });
+    const corpsInsertResult = await sequelize.query('INSERT INTO corps (name, logo, scale, industry, createdAt, updatedAt) \n' +
+      'VALUES($corpName, $logoUrl, $corpScale, $industry, now(), now()) \n' +
+      'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
+      {
+        bind: {
+          corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
+          corpScale: data.corp_scale, industry: data.corp_industry
+        },
+        type: sequelize.QueryTypes.INSERT, raw: true
+      }
+    );
+    const usersInsertResult = await sequelize.query('INSERT IGNORE INTO users (id, username, emailAddress, profilePicture, createdAt, updatedAt) \n' +
+      'VALUES($userid, $userName, '', $userAvatar, now(), now()) \n' +
+      'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
+      {
+        bind: {
+          userId: data.userid, userName: data.user_name, userAvatar: data.user_avatar
+        },
+        type: sequelize.QueryTypes.INSERT, raw: true
+      }
+    );
+    const companyInsertResult = await sequelize.query('INSERT INTO companies (name, logo, scale, industry, OwnerId, CorpId, createdAt, updatedAt) \n' +
+      'VALUES($corpName, $logoUrl, $corpScale, $industry, $userId, $corpId, now(), now()) \n' +
+      'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
+      {
+        bind: {
+          corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
+          corpScale: data.corp_scale, industry: data.corp_industry,
+          userId: userId, corpId: bindCorpId
+        },
+        type: sequelize.QueryTypes.INSERT, raw: true
+      }
+    );
+    const updateResult = await sequelize.query('UPDATE wx_qy_corps SET bind_corpid=$bindCorpId WHERE corpid=$corpid, updatedAt=now()',
+      {
+        bind: { corpid: data.corpid, bindCorpId: bindCorpId },
+        type: sequelize.QueryTypes.INSERT, raw: true
+      }
+    );
+  }
 };
 
 

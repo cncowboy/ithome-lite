@@ -7,6 +7,6 @@ const permissions = '-----|-----|-----|-----';
 const isGroup = false;
 const autoAssociations = '';
 
-const exportArray = ['wx_qy_suite', permissions, model, endpoints, extension, autoAssociations, isGroup, milestones];
+const exportArray = ['WxQySuite', permissions, model, endpoints, extension, autoAssociations, isGroup, milestones];
 
 export default exportArray;

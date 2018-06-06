@@ -62,7 +62,8 @@
     "winston": "^2.4.0",
     "object-assign": "^4.1.1",
     "wechat-corp-service-callback": "git+https://github.com/cncowboy/wechat-corp-service-callback.git",
-    "wechat-corp-service": "git+https://github.com/cncowboy/wechat-corp-service.git"
+    "wechat-corp-service": "git+https://github.com/cncowboy/wechat-corp-service.git",
+    "strman": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

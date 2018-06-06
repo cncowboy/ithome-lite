@@ -1,5 +1,6 @@
 import modelFields from '../../resourcesBuilder/modelFields';
 import PassportLocalSequelize from 'passport-local-sequelize';
+import { toSnakeCase } from 'strman';
 
 export default {
   setup(database, sequelize, name, isGroup) {
@@ -40,7 +41,7 @@ export default {
       },
     };
     fields = modelFields.addDefaultFields(fields, sequelize, isGroup);
-    const model = database.define(name, fields);
+    const model = database.define(name, fields, { tableName: toSnakeCase(name) });
 
     PassportLocalSequelize.attachToUser( model, {
       usernameField: 'signName',

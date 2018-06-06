@@ -126,6 +126,7 @@ const app_suite = (req, res, next) => {
       });
     } else if (message.InfoType === 'create_auth') {
       res.reply('success');
+      console.log('recv create_auth, auth_code:' + message.AuthCode);
 
       process.nextTick(() => {
         // $work->setSuiteTempAuthCode(message.SuiteId, message.AuthCode);

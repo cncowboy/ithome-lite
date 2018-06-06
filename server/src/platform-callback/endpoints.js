@@ -125,7 +125,7 @@ const app_suite = (req, res, next) => {
             user_name: data.auth_user_info.name, user_avatar: data.auth_user_info.avatar};
           params = mergeObjects(params, data.auth_corp_info);
 
-          import_corpQ(gSequelize, params). then( (result) => {
+          import_corpQ(gSequelize, gResources, params). then( (result) => {
             console.log('import corp finish');
           });
         });

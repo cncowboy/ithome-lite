@@ -70,12 +70,12 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     userId = user.id;
 
     const companyInsertResult = await sequelize.query(
-      'INSERT INTO company (name, logo, scale, industry, OwnerId, CorpId, createdAt, updatedAt) \n' +
-      'VALUES($corpName, $logoUrl, $corpScale, $industry, $userId, $corpId, now(), now()) \n' +
+      'INSERT INTO company (name, OwnerId, CorpId, createdAt, updatedAt) \n' +
+      'VALUES($corpName, $corpScale, $industry, $userId, $corpId, now(), now()) \n' +
       'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
       {
         bind: {
-          corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
+          corpName: data.corp_name,
           corpScale: data.corp_scale, industry: data.corp_industry,
           userId: userId, corpId: bindCorpId
         },

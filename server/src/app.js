@@ -50,6 +50,6 @@ epilogueAuth.setupAuthCheck(resources, groupXrefModel, database);
 authEndpoints.setup(app, passport);
 
 const apiWxqy = getApiWxqy(config, database);
-platformCbEndpoints.setup(app, database, apiWxqy);
+platformCbEndpoints.setup(app, database, resources, apiWxqy);
 // ---------------------server------------------------
 server.serve(database, server.createServerObject(app), resources, groupXrefModel);

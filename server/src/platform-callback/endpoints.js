@@ -6,16 +6,23 @@ import { mergeObjects } from "../utils/utils";
 let gSequelize = null;
 let gCryptor = null;
 let gApiWxqy = null;
+let gResources = null;
 
-const save_ticket = (sequelize, data, callback) => {
+const save_ticket = (sequelize, resourcesFromSetup, data, callback) => {
+  const awaitedResourcesFromSetup = await resourcesFromSetup;
+  const suiteResource = awaitedResourcesFromSetup.get('WxQySuite')[2];
+
   sequelize.query('INSERT INTO wx_qy_suites (suite_id, aes_key, token, ticket, expiredAt) ' +
     'VALUES($suiteId, $aesKey, $token, $ticket, DATE_ADD(now(), interval $expired MINUTE)) ' +
     'ON DUPLICATE KEY UPDATE ticket=$ticket, expiredAt=DATE_ADD(now(), interval $expired MINUTE)',
-    { bind: { suiteId: data.suiteId, aesKey: data.aesKey, token: data.token, ticket: data.ticket, expired: data.expired },
-      type: sequelize.QueryTypes.INSERT }).spread((results, metadata) => {
-    // Results will be an empty array and metadata will contain the number of affected rows.
-    callback(null, 0);
-  });
+    {
+      bind: { suiteId: data.suiteId, aesKey: data.aesKey, token: data.token, ticket: data.ticket, expired: data.expired },
+      type: sequelize.QueryTypes.INSERT, raw: true, model: suiteResource })
+    .then((results) => {
+      // Results will be an empty array and metadata will contain the number of affected rows.
+      console.log(results);
+      callback(null, 0);
+    });
 };
 
 const import_corp = (sequelize, data, callback) => {
@@ -121,7 +128,7 @@ const app_suite = (req, res, next) => {
       gApiWxqy.setSuiteTicket(suite_ticket);
       // const suite_ticket_tm = new Date(parseInt(message.TimeStamp) * 1000);
       // 将最新的ticket放到数据库中, 调用用户自己定义的 save_ticket(callback) 方法。
-      save_ticket(gSequelize, {suiteId: sc.suiteId, token: sc.token, aesKey: sc.aesKey, ticket: suite_ticket, expired: 10}, (err, ret) => {
+      save_ticket(gSequelize, gResources, {suiteId: sc.suiteId, token: sc.token, aesKey: sc.aesKey, ticket: suite_ticket, expired: 10}, (err, ret) => {
         res.reply('success');
       });
     } else if (message.InfoType === 'create_auth') {
@@ -137,7 +144,7 @@ const app_suite = (req, res, next) => {
           params = mergeObjects(params, data.auth_corp_info);
 
           import_corp(gSequelize, params, (err, ret) => {
-            res.reply('success');
+            console.log('import corp finish');
           });
         });
       });
@@ -180,8 +187,9 @@ const app_suite = (req, res, next) => {
 
 export default {
 
-  setup(app: {}, sequelize: {}, apiWxqy: {}) {
+  setup(app: {}, sequelize: {}, resources: {}, apiWxqy: {}) {
     gSequelize = sequelize;
+    gResources = resources;
     gApiWxqy = apiWxqy;
     app.get('/qywx_suite', app_suite);
     app.post('/qywx_suite', app_suite);

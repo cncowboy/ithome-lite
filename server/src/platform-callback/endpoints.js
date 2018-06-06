@@ -83,7 +83,7 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
       }
     );
     const updateResult = await sequelize.query(
-      'UPDATE wx_qy_corp SET bind_corpid=$bindCorpId WHERE corpid=$corpid, updatedAt=now()',
+      'UPDATE wx_qy_corp SET bind_corpid=$bindCorpId, updatedAt=now() WHERE corpid=$corpid',
       {
         bind: { corpid: data.corpid, bindCorpId: bindCorpId },
         type: sequelize.QueryTypes.INSERT, raw: true

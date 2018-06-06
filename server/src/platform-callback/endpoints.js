@@ -67,7 +67,7 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     const user = await modelUser.create({
       id: data.userid, signName: data.userid, username: data.user_name, emailAddress: '', profilePicture: data.user_avatar
     });
-    userId = user.id;
+    userId = user.userid;
 
     const companyInsertResult = await sequelize.query(
       'INSERT INTO company (name, OwnerId, CorpId, createdAt, updatedAt) \n' +

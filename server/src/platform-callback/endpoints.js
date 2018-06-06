@@ -26,7 +26,7 @@ const save_ticketQ = async (sequelize, resourcesFromSetup, data) => {
   return results;
 };
 
-const import_corp = async (sequelize, data) => {
+const import_corpQ = async (sequelize, data) => {
   const wxQyCorpsInsertResult = await sequelize.query('INSERT INTO wx_qy_corps (suite_id, corpid, corp_name, corp_type, corp_square_logo_url, \n' +
     'corp_user_max, corp_agent_max, corp_full_name, corp_scale, corp_industry, \n' +
     'corp_sub_industry, admin_userid, admin_name, admin_avatar, permanent_code, \n' +
@@ -128,7 +128,7 @@ const app_suite = (req, res, next) => {
             user_name: data.auth_user_info.name, user_avatar: data.auth_user_info.avatar};
           params = mergeObjects(params, data.auth_corp_info);
 
-          import_corp(gSequelize, params, (err, ret) => {
+          import_corpQ(gSequelize, params). then( (result) => {
             console.log('import corp finish');
           });
         });

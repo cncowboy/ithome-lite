@@ -26,7 +26,7 @@ const save_ticketQ = async (sequelize, resourcesFromSetup, data) => {
   return results;
 };
 
-const import_corpQ = async (sequelize, data) => {
+const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
   const wxQyCorpsInsertResult = await sequelize.query('INSERT INTO wx_qy_corps (suite_id, corpid, corp_name, corp_type, corp_square_logo_url, \n' +
     'corp_user_max, corp_agent_max, corp_full_name, corp_scale, corp_industry, \n' +
     'corp_sub_industry, admin_userid, admin_name, admin_avatar, permanent_code, \n' +
@@ -50,30 +50,26 @@ const import_corpQ = async (sequelize, data) => {
   if (!wxQyCorp.bind_corpid) {
     let bindCorpId = 0;
     let userId = 0;
-    let companyId = 0;
 
-    const corpsInsertResult = await sequelize.query('INSERT INTO corps (name, logo, scale, industry, createdAt, updatedAt) \n' +
-      'VALUES($corpName, $logoUrl, $corpScale, $industry, now(), now()) \n' +
-      'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
-      {
-        bind: {
-          corpName: data.corp_name, logoUrl: data.corp_square_logo_url,
-          corpScale: data.corp_scale, industry: data.corp_industry
-        },
-        type: sequelize.QueryTypes.INSERT, raw: true
-      }
-    );
-    const usersInsertResult = await sequelize.query('INSERT IGNORE INTO users (id, username, emailAddress, profilePicture, createdAt, updatedAt) \n' +
-      'VALUES($userid, $userName, $email, $userAvatar, now(), now()) \n' +
-      'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
-      {
-        bind: {
-          userId: data.userid, userName: data.user_name, email: '', userAvatar: data.user_avatar
-        },
-        type: sequelize.QueryTypes.INSERT, raw: true
-      }
-    );
-    const companyInsertResult = await sequelize.query('INSERT INTO companies (name, logo, scale, industry, OwnerId, CorpId, createdAt, updatedAt) \n' +
+    const awaitedResourcesFromSetup = await resourcesFromSetup;
+    const resourceCorp = awaitedResourcesFromSetup.get('corp');
+    const modelCorp = resourceCorp[2];
+
+    const corp = await modelCorp.create({
+      name: data.corp_name, logo: data.corp_square_logo_url,
+      scale: data.corp_scale, industry: data.corp_industry
+    });
+    bindCorpId = corp.id;
+
+    const resourceUser = awaitedResourcesFromSetup.get('User');
+    const modelUser = resourceUser[2];
+    const user = await modelUser.create({
+      id: data.userid, username: data.user_name, emailAddress: '', profilePicture: data.user_avatar
+    });
+    userId = user.id;
+
+    const companyInsertResult = await sequelize.query(
+      'INSERT INTO companies (name, logo, scale, industry, OwnerId, CorpId, createdAt, updatedAt) \n' +
       'VALUES($corpName, $logoUrl, $corpScale, $industry, $userId, $corpId, now(), now()) \n' +
       'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
       {
@@ -85,7 +81,8 @@ const import_corpQ = async (sequelize, data) => {
         type: sequelize.QueryTypes.INSERT, raw: true
       }
     );
-    const updateResult = await sequelize.query('UPDATE wx_qy_corps SET bind_corpid=$bindCorpId WHERE corpid=$corpid, updatedAt=now()',
+    const updateResult = await sequelize.query(
+      'UPDATE wx_qy_corps SET bind_corpid=$bindCorpId WHERE corpid=$corpid, updatedAt=now()',
       {
         bind: { corpid: data.corpid, bindCorpId: bindCorpId },
         type: sequelize.QueryTypes.INSERT, raw: true

@@ -64,11 +64,11 @@ const import_corpQ = async (sequelize, data) => {
       }
     );
     const usersInsertResult = await sequelize.query('INSERT IGNORE INTO users (id, username, emailAddress, profilePicture, createdAt, updatedAt) \n' +
-      'VALUES($userid, $userName, '', $userAvatar, now(), now()) \n' +
+      'VALUES($userid, $userName, $email, $userAvatar, now(), now()) \n' +
       'ON DUPLICATE KEY UPDATE name=$corpName, updatedAt=now()',
       {
         bind: {
-          userId: data.userid, userName: data.user_name, userAvatar: data.user_avatar
+          userId: data.userid, userName: data.user_name, email: '', userAvatar: data.user_avatar
         },
         type: sequelize.QueryTypes.INSERT, raw: true
       }

@@ -21,11 +21,11 @@ export default {
       },
       hash: {
         type: sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       salt: {
         type: sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       activationKey: {
         type: sequelize.STRING,

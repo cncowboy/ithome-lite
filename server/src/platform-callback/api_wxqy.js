@@ -8,13 +8,13 @@ const get_token = (cb) => {
 };
 
 const save_token = (token, cb) => {
-
+  cb(null, token);
 };
 
 export const getApiWxqy = (config: {}, sequelize: {}) => {
   gSequelize = sequelize;
   const sc = config.authMethods['wechat-work'];
-  const apicorp = new APICorp(sc.suiteId, sc.suiteSecret, '', get_token, save_token);
+  const apicorp = new APICorp(sc.suiteId, sc.suiteSecret, '');
   sequelize.query('SELECT * FROM wx_qy_suites WHERE suite_id=$suiteid', { bind: {suiteid: sc.suiteId}, type: sequelize.QueryTypes.SELECT })
     .then(function(wx_suites) {
       if (wx_suites && wx_suites.length>0) {

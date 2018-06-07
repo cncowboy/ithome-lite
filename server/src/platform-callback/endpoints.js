@@ -65,14 +65,14 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     const resourceUser = awaitedResourcesFromSetup.get('User');
     const modelUser = resourceUser[2];
     const user = await modelUser.create({
-      id: data.userid, signName: data.userid, username: data.user_name, emailAddress: '', profilePicture: data.user_avatar
+      userid: data.userid, username: data.user_name, emailAddress: '', profilePicture: data.user_avatar
     });
-    userId = user.userid;
+    userId = user.id;
 
     const resourceEmployee = awaitedResourcesFromSetup.get('Employee');
     const modelEmployee = resourceEmployee[2];
     await modelEmployee.create({
-      userid: userId, nick: data.user_name, join_type: 3
+      userid: userId, nick: data.user_name, join_type: 3,
     });
 
     const companyInsertResult = await sequelize.query(
@@ -83,21 +83,20 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
         bind: {
           corpName: data.corp_name,
           corpScale: data.corp_scale, industry: data.corp_industry,
-          userId: userId, corpId: bindCorpId
+          userId: userId, corpId: bindCorpId,
         },
-        type: sequelize.QueryTypes.INSERT, raw: true
+        type: sequelize.QueryTypes.INSERT, raw: true,
       }
     );
     const updateResult = await sequelize.query(
       'UPDATE wx_qy_corp SET bind_corpid=$bindCorpId, updatedAt=now() WHERE corpid=$corpid',
       {
         bind: { corpid: data.corpid, bindCorpId: bindCorpId },
-        type: sequelize.QueryTypes.INSERT, raw: true
-      }
+        type: sequelize.QueryTypes.INSERT, raw: true,
+      },
     );
   }
 };
-
 
 const app_suite = (req, res, next) => {
   const that = this;

@@ -5,20 +5,18 @@ import { toSnakeCase } from 'strman';
 export default {
   setup(database, sequelize, name, isGroup) {
     let fields = {
-      id: { type: sequelize.STRING, unique: true },
-      username: sequelize.STRING,
-      emailAddress: sequelize.STRING,
-      profilePicture: sequelize.STRING,
-      userid: {
+      id: {
         type: sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      signName: {
+      userid: {
         type: sequelize.STRING,
-        allowNull: false,
         unique: true,
       },
+      username: sequelize.STRING,
+      emailAddress: sequelize.STRING,
+      profilePicture: sequelize.STRING,
       hash: {
         type: sequelize.TEXT,
         allowNull: true,
@@ -44,7 +42,7 @@ export default {
     const model = database.define(name, fields, { tableName: toSnakeCase(name) });
 
     PassportLocalSequelize.attachToUser( model, {
-      usernameField: 'signName',
+      usernameField: 'userid',
       hashField: 'hash',
       saltField: 'salt',
     });

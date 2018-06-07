@@ -21,16 +21,17 @@ export const getApiWxqy = (config: {}, sequelize: {}) => {
         const suite = wx_suites[0];
         apicorp.setSuiteTicket(suite.ticket);
         apicorp.getSuiteToken((err, token) => {
-
+          console.log('getApiWxqy, get suite token:');
+          console.log(token);
         });
       }
     });
   gApiCorp = apicorp;
-  return apicorp;
+  return gApiCorp;
 };
 
 export const getWxqyAccessToken = (callback) => {
-  gApiCorp.getSuiteToken((err, token) => {
+  gApiCorp.getCorpToken((err, token) => {
     callback(err, token);
   });
 };

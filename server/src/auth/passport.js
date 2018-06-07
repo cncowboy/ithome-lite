@@ -41,7 +41,6 @@ export default {
     /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
     const profileJson = ((profile || {})._json || {});
     returnObj.username = this.getUsername(profile, profileJson);
-    returnObj.signName = returnObj.username;
     returnObj.emailAddress = this.getEmailAddress(profileJson);
     returnObj.profilePicture = this.getProfilePicture(profileJson);
     return returnObj;
@@ -100,13 +99,13 @@ export default {
     return profilePicture;
   },
   /** @function
-   * @name getId
+   * @name getUserId
    * @param {object} req
    * @param {object} profile
    * @return {string}
    * @description Helper function for setup
    */
-  getId(req: {}, profile: {}): string {
+  getUserId(req: {}, profile: {}): string {
     const { id } = ((req || {}).user || {});
     if (!id) {
       return (profile || {}).id;
@@ -116,27 +115,27 @@ export default {
   /** @function
    * @name buildUserObj
    * @param {object} user
-   * @param {*} id
+   * @param {*} userid
    * @return {object}
    * @description Helper function for setup
    */
-  buildUserObj(user: {}, id: any): {} {
+  buildUserObj(user: {}, userid: any): {} {
     const userCopy = user;
-    if (typeof id === 'string') {
-      userCopy.id = id;
+    if (typeof userid === 'string') {
+      userCopy.userid = userid;
     }
-    if (!userCopy.id) {
+    if (!userCopy.userid) {
       utilities.winstonWrapper('Invalid user id in buildUserObj');
     }
     if (!userCopy.username) {
-      userCopy.username = userCopy.id;
+      userCopy.username = userCopy.userid;
     }
     return {
-      id: userCopy.id,
+      userid: userCopy.userid,
       username: userCopy.username,
       emailAddress: userCopy.emailAddress,
       profilePicture: userCopy.profilePicture,
-      updatedBy: userCopy.id,
+      // updatedBy: userCopy.id,
     };
   },
   /** @function
@@ -173,7 +172,7 @@ export default {
 
         passport.use(new PassportStrategy(passportConfig, (req, accessToken, refreshToken, extraParams, profile, done) => {
           const authAttempt = async () => {
-            const id = this.getId(req, profile);
+            const userid = this.getId(req, profile);
             const awaitedResourcesFromSetup = await resourcesFromSetup;
             const userResource = awaitedResourcesFromSetup.get('User')[2];
             let userErrorMessage = config.messages.userResourceNotFound;
@@ -182,24 +181,24 @@ export default {
             }
             utilities.throwErrorConditionally(userResource, userErrorMessage);
             let foundUser = await userResource.findOne({
-              attributes: ['id', 'username', 'emailAddress', 'profilePicture'],
-              where: {id},
+              attributes: ['id', 'userid', 'username', 'emailAddress', 'profilePicture'],
+              where: {userid},
             });
-            if (!id) {
+            if (!userid) {
               foundUser = false;
             }
             if (foundUser) {
-              if (foundUser.id && foundUser.username && foundUser.emailAddress && foundUser.profilePicture) {
+              if (foundUser.userid && foundUser.username && foundUser.emailAddress && foundUser.profilePicture) {
                 done(null, this.buildUserObj(foundUser, false));
-              } else if (foundUser.id) {
+              } else if (foundUser.userid) {
                 const userData = this.getFromProfile(profile);
-                done(null, this.buildUserObj(userData, foundUser.id));
+                done(null, this.buildUserObj(userData, foundUser.userid));
               } else {
                 done();
               }
             } else {
               const userData = this.getFromProfile(profile);
-              const user = await userResource.create(this.buildUserObj(userData, id));
+              const user = await userResource.create(this.buildUserObj(userData, userid));
               done(null, this.buildUserObj(user, false));
             }
           };
@@ -218,7 +217,7 @@ export default {
       authAttempt().catch(done);
     }));
 
-    passportConfig.usernameField = 'username';
+    passportConfig.usernameField = 'userid';
     passportConfig.passwordField = 'password';
     passport.use('local.register', new LocalStrategy(passportConfig, (req, username, password, done) => {
       const authAttempt = async () => {

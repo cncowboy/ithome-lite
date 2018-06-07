@@ -78,6 +78,7 @@ const config = {
       callbackURL: "/login/wechat-work/callback",
       state: "state",
       scope: "snsapi_base",
+      passReqToCallback: true,
       getAccessToken: getWxqyAccessToken,
       saveAccessToken: (accessToken) => {},
     },

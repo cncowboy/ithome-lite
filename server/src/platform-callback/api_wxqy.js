@@ -30,9 +30,19 @@ export const getApiWxqy = (config: {}, sequelize: {}) => {
   return gApiCorp;
 };
 
-export const getWxqyAccessToken = (callback) => {
-  gApiCorp.getCorpToken((err, token) => {
-    callback(err, token);
-  });
+export const getWxqyAccessToken = (corpId, callback) => {
+  sequelize.query('SELECT * FROM wx_qy_corp WHERE corpid=$corpId', { bind: {corpId: sc.corpId}, type: sequelize.QueryTypes.SELECT })
+    .then(function(wx_corps) {
+      if (wx_corps && wx_corps.length>0) {
+        const corp = wx_corps[0];
+        const permanentCode = corp.permanent_code;
+
+        gApiCorp.getCorpToken(corpId, permanentCode, (err, token) => {
+          console.log('getWxqyAccessToken, get corp token:');
+          console.log(token);
+          callback(err, token);
+        });
+      }
+    });
 };
 

@@ -172,7 +172,7 @@ export default {
 
         passport.use(new PassportStrategy(passportConfig, (req, accessToken, refreshToken, extraParams, profile, done) => {
           const authAttempt = async () => {
-            const userid = this.getId(req, profile);
+            const userid = this.getUserId(req, profile);
             const awaitedResourcesFromSetup = await resourcesFromSetup;
             const userResource = awaitedResourcesFromSetup.get('User')[2];
             let userErrorMessage = config.messages.userResourceNotFound;

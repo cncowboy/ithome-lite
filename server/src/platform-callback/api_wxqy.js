@@ -31,7 +31,7 @@ export const getApiWxqy = (config: {}, sequelize: {}) => {
 };
 
 export const getWxqyAccessToken = (corpId, callback) => {
-  gSequelize.query('SELECT * FROM wx_qy_corp WHERE corpid=$corpId', { bind: {corpId: sc.corpId}, type: sequelize.QueryTypes.SELECT })
+  gSequelize.query('SELECT * FROM wx_qy_corp WHERE corpid=$corpId', { bind: {corpId: corpId}, type: gSequelize.QueryTypes.SELECT })
     .then(function(wx_corps) {
       if (wx_corps && wx_corps.length>0) {
         const corp = wx_corps[0];

@@ -75,7 +75,7 @@ const config = {
       suiteId: 'wwd8cc11cf93bdf5dd',
       token:    'EkBLuJiYOTeK2FKkBVwkCvVtP', // 用于生成签名
       aesKey:  'U5hNpVHHL85geJvEByV6uKLe2qnmWwiiQcIA3ESxyEz', // AES密钥
-      callbackURL: "/login/wechat-work/callback",
+      callbackURL: "http://work.51yund.com/login/wechat-work/callback",
       state: "state",
       scope: "snsapi_base",
       passReqToCallback: true,

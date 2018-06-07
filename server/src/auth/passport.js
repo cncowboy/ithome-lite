@@ -39,7 +39,12 @@ export default {
   getFromProfile(profile: {}): {} {
     const returnObj = {};
     /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
-    const profileJson = ((profile || {})._json || {});
+    let profileJson = null;
+    if (profile._json) {
+      profileJson = ((profile || {})._json || {});
+    } else {
+      profileJson = profile || {};
+    }
     returnObj.username = this.getUsername(profile, profileJson);
     returnObj.emailAddress = this.getEmailAddress(profileJson);
     returnObj.profilePicture = this.getProfilePicture(profileJson);

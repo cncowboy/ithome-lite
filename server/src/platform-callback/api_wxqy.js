@@ -1,5 +1,5 @@
 import APICorp from 'wechat-corp-service';
-import AccessToken from 'passport-wechat-work';
+import { AccessToken } from 'passport-wechat-work';
 let gSequelize = null;
 let gApiCorp = null;
 

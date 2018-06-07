@@ -1,5 +1,5 @@
 import APICorp from 'wechat-corp-service';
-
+import AccessToken from 'passport-wechat-work';
 let gSequelize = null;
 let gApiCorp = null;
 
@@ -40,7 +40,8 @@ export const getWxqyAccessToken = (corpId, callback) => {
         gApiCorp.getCorpToken(corpId, permanentCode, (err, token) => {
           console.log('getWxqyAccessToken, get corp token:');
           console.log(token);
-          callback(err, token);
+          const accessToken = AccessToken(token.access_token, Date.now(), token.expires_in);
+          callback(err, accessToken);
         });
       }
     });

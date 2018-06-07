@@ -77,7 +77,7 @@ const config = {
       aesKey:  'U5hNpVHHL85geJvEByV6uKLe2qnmWwiiQcIA3ESxyEz', // AES密钥
       callbackURL: "http://work.51yund.com/login/wechat-work/callback",
       state: "state",
-      scope: "snsapi_base",
+      scope: "snsapi_userinfo",
       passReqToCallback: true,
       getAccessToken: getWxqyAccessToken,
       saveAccessToken: (accessToken) => {},

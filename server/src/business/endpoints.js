@@ -1,4 +1,5 @@
 import config from '../config';
+import Sequelize from 'sequelize';
 
 let gDatabase = null;
 let gResources = null;
@@ -58,7 +59,7 @@ const getInitInfo = async (resourcesFromSetup, database, user) => {
     const modelCompany = resourceCompany[2];
     company_list = await modelCompany.findAll({
       where: {
-        id: { $in: company_ids },
+        id: { [Sequelize.Op.in]: company_ids },
       },
     });
     for (let c of company_list) {

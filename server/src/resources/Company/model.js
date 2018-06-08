@@ -45,7 +45,7 @@ export default {
     };
     fields = modelFields.addDefaultFields(fields, sequelize, isGroup);
     const schema = database.define(name, fields, { tableName: toSnakeCase(name) });
-    schema.prototype.createSecretCode = () => {
+    schema.createSecretCode = () => {
       let num = '';
       for (let i = 0; i < 4; i++) {
         num += Math.floor(Math.random() * 10);

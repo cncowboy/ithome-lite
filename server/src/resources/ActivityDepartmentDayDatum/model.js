@@ -34,7 +34,7 @@ export default {
         allowNull: false,
         defaultValue: '0',
       },
-      createAt: {
+      createdAt: {
         type: sequelize.DATE,
         allowNull: false,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),

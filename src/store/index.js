@@ -16,10 +16,16 @@ const store = new Vuex.Store({
       title: '你好',
       img: 'https://img.yzcdn.cn/upload_files/2016/11/25/FpqPXlrMRjKwJs8VdTu3ZDJCj4j5.jpeg?imagediv2/2/w/200/h/200/q/90/format/jpeg',
       url: ''
-    }
-    ],
+    }],
     news: [],
-    topics: []
+    topics: [],
+    user: {},
+    activedEmployee: {},
+    companies:{},
+    user: {
+      currentCompanyId: 0,
+    },
+    companys: []
   },
   mutations: {
     slides (state, data) {

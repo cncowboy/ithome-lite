@@ -75,14 +75,15 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     const resourceUser = awaitedResourcesFromSetup.get('User');
     const modelUser = resourceUser[2];
     const user = await modelUser.create({
-      userid: data.userid, username: data.user_name, emailAddress: '', profilePicture: data.user_avatar
+      userid: data.userid, passport: 'wechat-work', username: data.user_name,
+      emailAddress: '', profilePicture: data.user_avatar,
     });
     userId = user.id;
 
     const resourceEmployee = awaitedResourcesFromSetup.get('Employee');
     const modelEmployee = resourceEmployee[2];
     await modelEmployee.create({
-      CompanyId: companyId, UserId: userId, nick: data.user_name, join_type: 3,
+      CompanyId: companyId, UserId: userId, nick: data.user_name, join_type: 0, actived: true,
     });
 
     /*

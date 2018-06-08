@@ -6,6 +6,11 @@ export default {
     let fields = {
       nick: sequelize.STRING,
       join_type: sequelize.INTEGER, // 0：管理员后台加入，1: 暗号，2：邀请, 3：扫码
+      actived: {
+        type: sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       createAt: {
         type: sequelize.DATE,
         allowNull: false,

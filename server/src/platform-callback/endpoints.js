@@ -70,7 +70,7 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
       name: data.corp_name,
       secret_code: modelCompany.createSecretCode(),
     });
-    const companyId = company.id;
+    companyId = company.id;
 
     const resourceUser = awaitedResourcesFromSetup.get('User');
     const modelUser = resourceUser[2];

@@ -13,6 +13,11 @@ export default {
       userid: {
         type: sequelize.STRING,
         unique: true,
+        allowNull: false,
+      },
+      passport: {
+        type: sequelize.STRING,
+        allowNull: false,
       },
       username: sequelize.STRING,
       emailAddress: sequelize.STRING,

@@ -124,7 +124,7 @@ export default {
    * @return {object}
    * @description Helper function for setup
    */
-  buildUserObj(user: {}, userid: any): {} {
+  buildUserObj(passportName: '', user: {}, userid: any): {} {
     const userCopy = user;
     if (typeof userid === 'string') {
       userCopy.userid = userid;
@@ -137,6 +137,7 @@ export default {
     }
     return {
       userid: userCopy.userid,
+      passport: passportName,
       username: userCopy.username,
       emailAddress: userCopy.emailAddress,
       profilePicture: userCopy.profilePicture,
@@ -194,17 +195,17 @@ export default {
             }
             if (foundUser) {
               if (foundUser.userid && foundUser.username && foundUser.emailAddress && foundUser.profilePicture) {
-                done(null, this.buildUserObj(foundUser, false));
+                done(null, this.buildUserObj(passportOptionName, foundUser, false));
               } else if (foundUser.userid) {
                 const userData = this.getFromProfile(profile);
-                done(null, this.buildUserObj(userData, foundUser.userid));
+                done(null, this.buildUserObj(passportOptionName, userData, foundUser.userid));
               } else {
                 done();
               }
             } else {
               const userData = this.getFromProfile(profile);
-              const user = await userResource.create(this.buildUserObj(userData, userid));
-              done(null, this.buildUserObj(user, false));
+              const user = await userResource.create(this.buildUserObj(passportOptionName, userData, userid));
+              done(null, this.buildUserObj(passportOptionName, user, false));
             }
           };
           authAttempt().catch(done);

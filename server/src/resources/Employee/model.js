@@ -11,7 +11,7 @@ export default {
         allowNull: false,
         defaultValue: false,
       },
-      createAt: {
+      createdAt: {
         type: sequelize.DATE,
         allowNull: false,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),

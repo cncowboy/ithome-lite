@@ -57,7 +57,7 @@ const getInitInfo = async (resourcesFromSetup, database, user) => {
   if (company_ids.length > 0) {
     const resourceCompany = awaitedResourcesFromSetup.get('Company');
     const modelCompany = resourceCompany[2];
-    company_list = await modelCompany.findAll({
+    const company_list = await modelCompany.findAll({
       where: {
         id: { [Sequelize.Op.in]: company_ids },
       },
@@ -70,7 +70,7 @@ const getInitInfo = async (resourcesFromSetup, database, user) => {
   if (activedEmployee) {
     const resourceDepartment = awaitedResourcesFromSetup.get('Department');
     const modelDepartment = resourceDepartment[2];
-    dep_list = await modelDepartment.findAll({
+    const dep_list = await modelDepartment.findAll({
       where: {
         CompanyId: activedEmployee.CompanyId,
       },

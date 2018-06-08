@@ -18,6 +18,7 @@ import server from './server';
 
 import platformCbEndpoints from './platform-callback/endpoints';
 import { getApiWxqy } from './platform-callback/api_wxqy';
+import businessEndpoints from './business/endpoints';
 
 const app = express();
 
@@ -51,5 +52,7 @@ authEndpoints.setup(app, passport);
 
 const apiWxqy = getApiWxqy(config, database);
 platformCbEndpoints.setup(app, database, resources, apiWxqy);
+
+businessEndpoints.setup(app, database, resources);
 // ---------------------server------------------------
 server.serve(database, server.createServerObject(app), resources, groupXrefModel);

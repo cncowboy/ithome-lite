@@ -50,6 +50,7 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
   const wxQyCorp = wxQyCorps[0];
   if (!wxQyCorp.bind_corpid) {
     let bindCorpId = 0;
+    let companyId = 0;
     let userId = 0;
 
     const awaitedResourcesFromSetup = await resourcesFromSetup;
@@ -62,6 +63,15 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     });
     bindCorpId = corp.id;
 
+    const resourceCompany = awaitedResourcesFromSetup.get('Company');
+    const modelCompany = resourceCompany[2];
+    const company = await modelCompany.create({
+      CorpId: bindCorpId,
+      name: data.corp_name,
+      secret_code: modelCompany.createSecretCode(),
+    });
+    const companyId = company.id;
+
     const resourceUser = awaitedResourcesFromSetup.get('User');
     const modelUser = resourceUser[2];
     const user = await modelUser.create({
@@ -72,9 +82,10 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
     const resourceEmployee = awaitedResourcesFromSetup.get('Employee');
     const modelEmployee = resourceEmployee[2];
     await modelEmployee.create({
-      userid: userId, nick: data.user_name, join_type: 3,
+      CompanyId: companyId, UserId: userId, nick: data.user_name, join_type: 3,
     });
 
+    /*
     const companyInsertResult = await sequelize.query(
       'INSERT INTO company (name, OwnerId, CorpId, createdAt, updatedAt) \n' +
       'VALUES($corpName, $userId, $corpId, now(), now()) \n' +
@@ -88,6 +99,8 @@ const import_corpQ = async (sequelize, resourcesFromSetup, data) => {
         type: sequelize.QueryTypes.INSERT, raw: true,
       }
     );
+    */
+
     const updateResult = await sequelize.query(
       'UPDATE wx_qy_corp SET bind_corpid=$bindCorpId, updatedAt=now() WHERE corpid=$corpid',
       {

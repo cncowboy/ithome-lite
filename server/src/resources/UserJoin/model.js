@@ -48,7 +48,7 @@ export default {
         type: sequelize.DATE,
         allowNull: false,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-      }
+      },
     };
     fields = modelFields.addDefaultFields(fields, sequelize, isGroup);
     return database.define(name, fields, { tableName: toSnakeCase(name) });

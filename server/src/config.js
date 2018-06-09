@@ -55,6 +55,7 @@ const config = {
       callbackURL: process.env.TWITTER_CALLBACK_URL || '/login/twitter/callback',
     },
     local: {
+      activationRequired: false,
 
     },
     weapp: {

@@ -32,7 +32,7 @@ export default {
       passport.authenticate('local.register', {
         successRedirect: '/registerSuccess',
         failureRedirect: '/registerFailure',
-        failureFlash: true
+        failureFlash: true,
       }), function(req, res, next) {
 
       });

@@ -50,6 +50,9 @@ export default {
       usernameField: 'userid',
       hashField: 'hash',
       saltField: 'salt',
+      activationRequired: false,
+      activationkeylen: 6,
+      activationKeyField: 'activation_key',
     });
 
     return model;

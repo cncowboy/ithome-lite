@@ -1,5 +1,15 @@
 module.exports = [
   {
+    path: '/pages/user/register',
+    name: 'userRegister',
+    meta: {
+      nav: false
+    },
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
     path: '/pages/user/login',
     name: 'userLogin',
     meta: {

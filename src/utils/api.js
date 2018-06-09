@@ -39,6 +39,13 @@ const api = {
   }, {
     baseURL: baseUrlQuan
   }),
+  register: (params) => {
+    const formData = new FormData()
+    for (const key in params) {
+      formData.append(key, params[key])
+    }
+    return request.post('/api/register', formData, {baseURL: baseUrlApi})
+  },
   getInitInfo: () => {
     return request.get('/api/getInitInfo', {}, {baseURL: baseUrlApi})
   }

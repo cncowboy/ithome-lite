@@ -103,7 +103,7 @@ export default {
   setup(app: {}, database: {}, resources: {}) {
     gDatabase = database;
     gResources = resources;
-    app.get('/getInitInfo', controller_getInitInfo);
+    app.all('/getInitInfo', controller_getInitInfo);
   },
   getInitInfo,
 

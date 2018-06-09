@@ -3,8 +3,8 @@
     <form class="login-form" @submit.prevent>
       <div class="h2">register</div>
       <div class="form-group">
-        <input type="text" id="username" placeholder="Username" v-model="username">
-        <label for="username">Username</label>
+        <input type="text" id="userid" placeholder="Username" v-model="userid">
+        <label for="userid">Username</label>
       </div>
       <div class="form-group">
         <input type="password" id="Password" placeholder="Password" v-model="password">
@@ -24,7 +24,7 @@
     template: "#login-form",
     data() {
       return {
-        username: "",
+        userid: "",
         password: ""
       };
     },
@@ -38,7 +38,7 @@
     methods: {
       register() {
         //we should handle errors in a more scalabe way, but this works for now
-        api.register({username: this.username, password: this.password})
+        api.register({userid: this.userid, password: this.password})
           .then(data => {
             console.log(data)
           })

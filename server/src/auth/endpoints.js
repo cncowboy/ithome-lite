@@ -28,14 +28,17 @@ export default {
         done(null, user);
       });
     }
-    app.get('/register',
+    app.all('/register',
       passport.authenticate('local.register', {
-        successRedirect: '/registerSuccess',
+        successRedirect: '/api/registerSuccess',
         failureRedirect: '/registerFailure',
         failureFlash: true,
       }), function(req, res, next) {
 
       });
+    app.all('/registerSuccess', (req, res) => {
+      res.json({ code: 0 });
+    });
     const authMethods = Object.keys(config.authMethods);
     authMethods.forEach((authMethod) => {
       if (!(Array.isArray(config.authOptionsDisabled) && config.authOptionsDisabled.indexOf(authMethod) !== -1)) {
@@ -53,11 +56,11 @@ export default {
           passportAuthenticate = passport.authenticate(authMethod);
         }
 
-        app.get(
+        app.all(
           `/login/${authMethod}`,
           passportAuthenticate,
         );
-        app.get(
+        app.all(
           `/login/${authMethod}/callback`,
           passport.authenticate(authMethod, authOptionsObj),
           (req, res) => {
@@ -72,7 +75,7 @@ export default {
         );
       }
     });
-    app.get(
+    app.all(
       '/logout',
       (req, res) => {
         req.logout();

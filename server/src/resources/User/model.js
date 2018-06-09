@@ -17,6 +17,7 @@ export default {
       },
       passport: {
         type: sequelize.STRING,
+        defaultValue: 'local',
         allowNull: false,
       },
       username: sequelize.STRING,

@@ -44,7 +44,13 @@ const api = {
     for (const key in params) {
       formData.append(key, params[key])
     }
-    return request.post('/api/register', formData, {baseURL: baseUrlApi})
+    return request.post('/api/register', params,
+      {
+        baseURL: baseUrlApi,
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        }
+      })
   },
   getInitInfo: () => {
     return request.get('/api/getInitInfo', {}, {baseURL: baseUrlApi})

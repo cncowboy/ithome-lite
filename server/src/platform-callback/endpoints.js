@@ -193,8 +193,7 @@ export default {
     gSequelize = sequelize;
     gResources = resources;
     gApiWxqy = apiWxqy;
-    app.get('/qywx_suite', app_suite);
-    app.post('/qywx_suite', app_suite);
+    app.all('/qywx_suite', app_suite);
   },
 
 };

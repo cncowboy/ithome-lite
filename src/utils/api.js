@@ -1,8 +1,8 @@
 import request from './request'
 
-const baseUrlApi = 'https://api.ithome.com'
+const baseUrlApi = 'http://work.51yund.com'
 const baseUrlDyn = 'https://dyn.ithome.com'
-const baseUrlQuan = 'https://apiquan.ithome.com'
+const baseUrlQuan = 'http://work.51yund.com'
 
 const api = {
   getNewsList: (r) => request.get('/json/newslist/news', null, {
@@ -38,7 +38,10 @@ const api = {
     replyidlessthan: last
   }, {
     baseURL: baseUrlQuan
-  })
+  }),
+  getInitInfo: () => {
+    return request.get('/api/getInitInfo', {}, {baseURL: baseUrlApi})
+  }
 }
 
 export default api

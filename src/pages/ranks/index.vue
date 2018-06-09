@@ -47,11 +47,6 @@
               23423
             </div>
           </div>
-          <div class="weui-flex justify">
-            <div class="weui-flex__item justify align order" >
-              <a :href="getWexinworkLoginUrl" >企业微信登录</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -82,16 +77,11 @@
       }
     },
     computed: {
-      getWexinworkLoginUrl: () => {
-        const redirectUri = 'http://work.51yund.com:8080/login/wexinwork'
-        let url = 'https://open.work.weixin.qq.com/wwopen/sso/3rd_qrConnect?appid=wwa1b64dba72a3bafa&redirect_uri='
-          + encodeURIComponent(redirectUri) + '&state=web_login@gyoss9&usertype=member'
-        return url
-      },
       ...mapState([
       ])
     },
     mounted () {
+      this.init()
     },
     onPullDownRefresh () {
     },
@@ -99,10 +89,12 @@
     //   this.loadmore()
     // },
     methods: {
-      onWexinworkLogin: () => {
-      },
       ...mapActions([
-      ])
+        'getInitInfo'
+      ]),
+      async init () {
+        await Promise.all([this.getInitInfo()])
+      }
     }
   }
 </script>

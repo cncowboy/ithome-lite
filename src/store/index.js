@@ -20,12 +20,8 @@ const store = new Vuex.Store({
     news: [],
     topics: [],
     user: {},
-    activedEmployee: {},
-    companies:{},
-    user: {
-      currentCompanyId: 0,
-    },
-    companys: []
+    activedEmployee: {CompanyId: 0},
+    companies: {}
   },
   mutations: {
     slides (state, data) {
@@ -36,6 +32,11 @@ const store = new Vuex.Store({
     },
     topics (state, data) {
       state.topics = data
+    },
+    initInfo (state, data) {
+      state.user = data.user
+      state.activedEmployee = data.activedEmployee
+      state.companies = data.companies
     }
   },
   actions: {
@@ -72,6 +73,12 @@ const store = new Vuex.Store({
         commit('topics', formatedTopics)
       } else {
         commit('topics', state.topics.concat(formatedTopics))
+      }
+    },
+    async getInitInfo ({ state, commit }, init) {
+      const initInfo = await api.getInitInfo()
+      if (initInfo) {
+        commit('initInfo', initInfo)
       }
     }
   }

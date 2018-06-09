@@ -14,7 +14,7 @@ const config = {
     database: 'sport_corp', username: 'root', password: '123456', host : '127.0.0.1', port : '3306', dialect : 'mysql', operatorsAliases: false
   },
   urlencodedExtended: process.env.URL_ENCODED_EXTENDED || 'NO',
-  force: process.env.FORCE || 'YES', // YES to clear the db on server restart
+  force: process.env.FORCE || 'NO', // YES to clear the db on server restart
   sessionSecret: process.env.SESSION_SECRET || '<SESSION_SECRET>',
   sessionResave: process.env.SESSION_RESAVE || 'NO',
   sessionSaveUninitialized: process.env.SESSION_SAVE_UNINITIALIZED || 'YES',

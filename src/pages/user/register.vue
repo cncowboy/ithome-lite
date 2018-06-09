@@ -1,7 +1,7 @@
 <template id="login-form">
   <div class="login-wrapper">
     <form class="login-form" @submit.prevent>
-      <div class="h2">Login</div>
+      <div class="h2">register</div>
       <div class="form-group">
         <input type="text" id="username" placeholder="Username" v-model="username">
         <label for="username">Username</label>
@@ -11,7 +11,7 @@
         <label for="Password">Password</label>
       </div>
       <div class="button-area">
-        <button class="btn btn-primary pull-right" @click="register()" >Login</button>
+        <button class="btn btn-primary pull-right" @click="register()" >Register</button>
       </div>
     </form>
   </div>
@@ -38,7 +38,6 @@
     methods: {
       register() {
         //we should handle errors in a more scalabe way, but this works for now
-        alert(this.username + ' ' + this.password)
         api.register({username: this.username, password: this.password})
           .then(data => {
             console.log(data)

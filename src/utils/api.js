@@ -1,6 +1,6 @@
 import request from './request'
 
-const baseUrlApi = 'http://work.51yund.com'
+const baseUrlApi = ''
 const baseUrlDyn = 'https://dyn.ithome.com'
 const baseUrlQuan = 'http://work.51yund.com'
 

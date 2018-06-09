@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import Sequelize from 'sequelize';
 import expressJwt from 'express-jwt';
+import flash from 'connect-flash';
 import childProcess from 'child_process';
 import utilities from './utilities';
 import config from './config';
@@ -44,6 +45,7 @@ app.use(expressJwt({
   getToken: req => req.cookies.id_token,
 }));
 
+app.use(flash());
 app.use(passport.initialize());
 
 epilogueAuth.setupAuthCheck(resources, groupXrefModel, database);

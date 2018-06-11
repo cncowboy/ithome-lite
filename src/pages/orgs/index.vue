@@ -1,5 +1,9 @@
 <template>
-  <div >
+  <div v-if="activedEmployee">
+    <button class="weui-btn" type="primary" @click="createCompany">创建公司</button>
+  </div>
+  <div v-else>
+
     <mp-search @on-input="onSearchChange" @on-submit="onSearchConfirm" />
 
     <div class="weui-cells__title">操作</div>
@@ -62,6 +66,9 @@
     },
     computed: {
       ...mapState([
+        'user',
+        'activedEmployee',
+        'companies'
       ])
     },
     mounted () {
@@ -86,7 +93,10 @@
           title: `onSearchChange:${value}`,
           icon: 'none'
         })
-      }
+      },
+      createCompany () {
+        this.$router.push('/pages/orgs/companyCreate')
+      },
     }
   }
 </script>

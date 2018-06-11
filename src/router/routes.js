@@ -120,5 +120,15 @@ module.exports = [
     config: {
       navigationBarTitleText: '圈子详情'
     }
+  },
+  {
+    path: '/pages/orgs/companyCreate',
+    name: 'companyCreate',
+    meta: {
+      nav: false
+    },
+    config: {
+      enablePullDownRefresh: false
+    }
   }
 ]

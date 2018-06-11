@@ -33,6 +33,7 @@ module.exports = {
       'platform-components': resolve('src/components/mp'),
       'mp-weui-platform': 'mp-weui/platform/wexin',
       'weui-cell': 'mp-weui/packages/cell',
+      'weui-field': 'mp-weui/packages/field',
       'weui-search': 'mp-weui/packages/search',
       'weui-navbar': 'mp-weui/packages/navbar',
       'utils': resolve('src/utils')

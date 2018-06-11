@@ -81,7 +81,6 @@
       ])
     },
     mounted () {
-      this.init()
     },
     onPullDownRefresh () {
     },
@@ -90,11 +89,7 @@
     // },
     methods: {
       ...mapActions([
-        'getInitInfo'
-      ]),
-      async init () {
-        await Promise.all([this.getInitInfo()])
-      }
+      ])
     }
   }
 </script>

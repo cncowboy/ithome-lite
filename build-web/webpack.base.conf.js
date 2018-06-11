@@ -46,6 +46,9 @@ const webpackConfig = {
       'platform-components': resolve('src/components/web'),
       'mp-weui-platform': 'mp-weui/platform/web',
       'weui-cell': 'mp-weui/packages/cell',
+      'weui-field': 'mp-weui/packages/field',
+      'weui-picker': 'mp-weui/packages/picker',
+      'weui-switch': resolve('src/components/web/switch'),
       'weui-search': resolve('src/components/web/search'),
       'weui-navbar': resolve('src/components/web/navbar'),
       'utils': resolve('src/utils')

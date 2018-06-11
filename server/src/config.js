@@ -23,7 +23,7 @@ const config = {
   tokenExpiresIn: process.env.TOKEN_EXPIRES_IN || (60 * 60 * 24 * 180), // 180 days
   cookieMaxAge: process.env.COOKIE_MAX_AGE || (60 * 60 * 24 * 180 * 1000), // 180,000 days
   authFailureRedirect: process.env.AUTH_FAILURE_REDIRECT || '/authFailure',
-  authSuccessRedirect: process.env.AUTH_SUCCESS_REDIRECT || 'http://work.51yund.com/',
+  authSuccessRedirect: process.env.AUTH_SUCCESS_REDIRECT || 'http://work.51yund.com/pages/default/loading',
   loggedOutScreen: process.env.LOGGED_OUT_SCREEN || '/loggedOutScreen',
   passportSession: process.env.PASSPORT_SESSION || 'NO',
   httpOnlyCookie: process.env.HTTP_ONLY_COOKIE || 'YES',

@@ -39,6 +39,19 @@ const api = {
   }, {
     baseURL: baseUrlQuan
   }),
+  login: (params) => {
+    const formData = new FormData()
+    for (const key in params) {
+      formData.append(key, params[key])
+    }
+    return request.post('/api/login/local', params,
+      {
+        baseURL: baseUrlApi,
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        }
+      })
+  },
   register: (params) => {
     const formData = new FormData()
     for (const key in params) {

@@ -20,6 +20,16 @@ module.exports = [
     }
   },
   {
+    path: '/pages/default/loading',
+    name: 'defaultLoading',
+    meta: {
+      nav: false
+    },
+    config: {
+      enablePullDownRefresh: false
+    }
+  },
+  {
     alias: '/',
     path: '/pages/ranks',
     name: 'ranksIndex',

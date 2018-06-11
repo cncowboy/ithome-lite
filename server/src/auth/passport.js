@@ -212,7 +212,12 @@ export default {
         }));
       }
     });
-    passportConfig.passReqToCallback = true;
+    passportConfig = {
+      callbackURL: config.authMethods['local'].callbackURL,
+      passReqToCallback: true,
+    };
+    objectAssign(passportConfig, config.authMethods['local']);
+
     passport.use(new LocalStrategy(passportConfig, (req, username, password, done) => {
       const authAttempt = async () => {
         const awaitedResourcesFromSetup = await resourcesFromSetup;
@@ -223,8 +228,6 @@ export default {
       authAttempt().catch(done);
     }));
 
-    passportConfig.usernameField = 'userid';
-    passportConfig.passwordField = 'password';
     passport.use('local.register', new LocalStrategy(passportConfig, (req, username, password, done) => {
       const authAttempt = async () => {
         const awaitedResourcesFromSetup = await resourcesFromSetup;

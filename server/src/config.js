@@ -56,7 +56,9 @@ const config = {
     },
     local: {
       activationRequired: false,
-
+      usernameField: 'userid',
+      passwordField: 'password',
+      assignProperty: true,
     },
     weapp: {
       provider: 'weixin',
@@ -66,7 +68,6 @@ const config = {
       authorizationURL: 'https://api.weixin.qq.com/sns/jscode2session',
       session: false,
       scope: 'weapp_login',
-      successRedirect: '/login/weapp/callback',
       failureFlash: true,
     },
     'wechat-work': {

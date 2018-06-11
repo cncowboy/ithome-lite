@@ -3,8 +3,8 @@
     <form class="login-form" @submit.prevent>
       <div class="h2">Login</div>
       <div class="form-group">
-        <input type="text" id="username" placeholder="Username" v-model="username">
-        <label for="username">Username</label>
+        <input type="text" id="userid" placeholder="Username" v-model="userid">
+        <label for="userid">Username</label>
       </div>
       <div class="form-group">
         <input type="password" id="Password" placeholder="Password" v-model="password">
@@ -22,15 +22,16 @@
 </template>
 
 <script>
-  import axios from "axios";
+  import api from "../../utils/api";
+
   export default {
     name: "LoginForm",
     template: "#login-form",
     data() {
       return {
         rememberMe: false,
-        username: "",
-        password: ""
+        userid: '',
+        password: ''
       };
     },
     beforeMount() {
@@ -44,26 +45,20 @@
       isRememberMe() {
         return this.rememberMe === true;
       },
-      login() {
-        //we should handle errors in a more scalabe way, but this works for now
-        alert(this.username + " " + this.password + " " + this.rememberMe);
-        axios
-          .post("http://api2.wisksolution.com/login", {
-            body: {
-              username: this.username,
-              password: this.password
+      login () {
+        api.login({userid: this.userid, password: this.password, rememberMe: this.rememberMe})
+          .then(data => {
+            console.log(data)
+            if (data.code === 0) {
+              this.$router.replace({ path: '/pages/default/loading' })
             }
           })
-          .then(response => {
-            alert(response);
-            //handle response and save JWT
-          })
           .catch(err => {
-            alert(err);
-          });
+            console.log(err)
+          })
       },
-      register() {
-        alert("Coming soon ...");
+      register () {
+        this.$router.replace('/pages/user/register')
       }
     }
   };

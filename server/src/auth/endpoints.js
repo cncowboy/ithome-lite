@@ -30,15 +30,12 @@ export default {
     }
     app.all('/register',
       passport.authenticate('local.register', {
-        successRedirect: '/api/registerSuccess',
-        failureRedirect: '/registerFailure',
+        assignProperty: 'user',
+        failureRedirect: config.authFailureRedirect,
         failureFlash: true,
       }), function(req, res, next) {
-
+        return res.json({ code: 0 });
       });
-    app.all('/registerSuccess', (req, res) => {
-      res.json({ code: 0 });
-    });
     const authMethods = Object.keys(config.authMethods);
     authMethods.forEach((authMethod) => {
       if (!(Array.isArray(config.authOptionsDisabled) && config.authOptionsDisabled.indexOf(authMethod) !== -1)) {
@@ -50,7 +47,11 @@ export default {
         if (authMethod !== 'twitter') {
           const authMethodObj = config.authMethods[authMethod];
           const { scope } = authMethodObj;
-          passportAuthenticate = passport.authenticate(authMethod, { scope, session: passportSession });
+          const options = { scope, session: passportSession };
+          if (authMethod === 'local') {
+            options['assignProperty'] = 'user';
+          }
+          passportAuthenticate = passport.authenticate(authMethod, options);
           authOptionsObj.session = passportSession;
         } else {
           passportAuthenticate = passport.authenticate(authMethod);
@@ -59,6 +60,17 @@ export default {
         app.all(
           `/login/${authMethod}`,
           passportAuthenticate,
+          (req, res) => {
+            if (req.route.path === '/login/local') {
+              const expiresIn = parseInt(config.tokenExpiresIn, 10);
+              const maxAge = parseInt(config.cookieMaxAge, 10);
+              const httpOnly = utilities.yesTrueNoFalse(config.httpOnlyCookie);
+              const cookieOptions = { maxAge, httpOnly };
+              const token = jwt.sign(req.user.toJSON(), config.jwt.secret, { expiresIn });
+              res.cookie('id_token', token, cookieOptions);
+              res.json({ code: 0 });
+            }
+          },
         );
         app.all(
           `/login/${authMethod}/callback`,

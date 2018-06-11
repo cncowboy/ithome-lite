@@ -41,6 +41,9 @@
         api.register({userid: this.userid, password: this.password})
           .then(data => {
             console.log(data)
+            if (data.code == 0) {
+              this.$router.replace({ path: '/pages/user/login' })
+            }
           })
           .catch(err => {
             console.log(err)

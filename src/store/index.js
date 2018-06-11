@@ -79,7 +79,9 @@ const store = new Vuex.Store({
       const initInfo = await api.getInitInfo()
       if (initInfo) {
         commit('initInfo', initInfo)
+        return true
       }
+      return false
     }
   }
 })
